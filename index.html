@@ -1,1191 +1,1453 @@
 <!DOCTYPE html>
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>
-	sms.tsu.ge
-</title><link href="index_files/jquery-ui.css" rel="stylesheet"><link href="index_files/jquery_002.css" rel="stylesheet"><link href="index_files/jquery.css" rel="stylesheet">
-     <script src="index_files/analytics.js" async=""></script><script type="text/javascript">
-
-
-
-
-         var version = navigator.appVersion;
-
-
-
-
-         function showKeyCode(e) {
-
-             var keycode = (window.event) ? event.keyCode : e.keyCode;
-
-
-
-
-             if ((version.indexOf('MSIE') != -1)) {
-
-                 if (keycode == 116) {
-
-                     event.keyCode = 0;
-
-                     event.returnValue = false;
-
-                     return false;
-
-                 }
-
-             }
-
-             else {
-
-                 if (keycode == 116) {
-
-                     return false;
-
-                 }
-
-             }
-
-         }
-
-
-
-
-    </script>
-
-    <style type="text/css">
-        .style2
-        {
-            text-align: right;
-        }
-    </style>
-
-    <style type="text/css">
-        body {
-	      margin-left: 0px;
-	      margin-top: 0px;
-	      margin-right: 0px;
-	      margin-bottom: 0px;
-	      background-color:#ffffff;
-          }
-        table.nav
-{
-    border-top: solid 1px #707491;
-}
-
-table.nav td
-{
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-table.nav_selected
-{
-    background: url('App_Themes/BeachBlue/_images/nav_hi_bg.jpg') repeat-y left top;
-        }
-
-table.nav_selected td
-{
-    background: url('App_Themes/BeachBlue/_images/img_nav_hilight.gif') no-repeat left top;
-        }
-
-a.nav
-{
-    display: block;
-    height: 100%;
-    width: 100%;
-    padding-top: 4px;
-    padding-bottom: 4px;
-}
-
-table.sublevel
-{
-    border-top: solid 1px #707491;
-    background: #C7C4D5 url(App_Themes/BeachBlue/_images/subnav_lo_bg.gif) repeat-y top left;
-}
-
-table.sublevel td
-{
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-table.sublevel_selected
-{
-    background: #C7C4D5 url(App_Themes/BeachBlue/_images/nav_hi_bg.jpg) repeat-y top left;
-}
-
-table.sublevel_selected td
-{
-    background: url('App_Themes/BeachBlue/_images/img_nav_hilight.gif') no-repeat left top;
-        }
-
-a.sublevel
-{
-    display: block;
-    height: 100%;
-    width: 100%;
-    padding-top: 4px;
-    padding-bottom: 4px;
-}
-    </style>
-
-
-    <style type="text/css">
-	.ctl00_Menu1_0 { background-color:white;visibility:hidden;display:none;position:absolute;left:0px;top:0px; }
-	.ctl00_Menu1_1 { text-decoration:none; }
-	.ctl00_Menu1_2 { width:100%; }
-	.ctl00_Menu1_3 { color:#8C4510;font-size:10pt; }
-	.ctl00_Menu1_4 { background-color:#FFF7E7;padding:1px 3px 1px 3px; }
-	.ctl00_Menu1_5 { color:#000066; }
-	.ctl00_Menu1_6 { background-color:Gray; }
-	.ctl00_Menu1_7 { color:White;font-weight:bold; }
-	.ctl00_Menu1_8 { background-color:#0000CC;border-color:#0000CC; }
-	.ctl00_Menu1_9 { background-color:Blue;border-width:1px;border-style:Solid; }
-	.ctl00_Menu1_10 {  }
-	.ctl00_Menu1_11 { background-color:#507CD1; }
-	.ctl00_Menu1_12 { color:White; }
-	.ctl00_Menu1_13 { color:White;background-color:#284E98; }
-
-</style></head>
-
-
-<body onload="JavaScript:document.body.focus();" onkeydown="return showKeyCode(event)" style="padding-top:0px">
-
-    <form name="aspnetForm" method="post" action="./Cxrilebi.aspx" id="aspnetForm">
-<div>
-<input name="__EVENTTARGET" id="__EVENTTARGET" value="" type="hidden">
-<input name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" type="hidden">
-<input name="__VIEWSTATE" id="__VIEWSTATE" value="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" type="hidden">
-</div>
-
-<script type="text/javascript">
-//<![CDATA[
-var theForm = document.forms['aspnetForm'];
-if (!theForm) {
-    theForm = document.aspnetForm;
-}
-function __doPostBack(eventTarget, eventArgument) {
-    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
-        theForm.__EVENTTARGET.value = eventTarget;
-        theForm.__EVENTARGUMENT.value = eventArgument;
-        theForm.submit();
-    }
-}
-//]]>
-</script>
-
-
-<script src="index_files/WebResource.js" type="text/javascript"></script>
-
-
-<script src="index_files/ScriptResource_002.js" type="text/javascript"></script>
-<script src="index_files/ScriptResource.js" type="text/javascript"></script>
-<script src="index_files/ScriptResource_003.js" type="text/javascript"></script>
-<script src="index_files/jquery-2.js" type="text/javascript"></script>
-<script src="index_files/jquery-ui-1.js" type="text/javascript"></script>
-<script src="index_files/jquery.js" type="text/javascript"></script>
-<script src="index_files/MyScript.js" type="text/javascript"></script>
-<div>
-
-	<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="DE5F4BDC" type="hidden">
-	<input name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" type="hidden">
-	<input name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="dYxaNZQlsNVkpcMKTwjk2q9U8wkOZzzhjh1GmrEgz7pa/BKqSutKJ1c/QJnoex1c3T2FvlI+vaFVmctvAAUHT+wHQcacJ4V5Irqox8OUxozou4mxWiZE0yKVBLts15Trr2ERVCa4ClyrXRRvytqchg==" type="hidden">
-</div>
-
-      <script type="text/javascript">
-//<![CDATA[
-Sys.WebForms.PageRequestManager._initialize('ctl00$SM1', 'aspnetForm', [], [], [], 90, 'ctl00');
-//]]>
-</script>
-
-
-    <table style="height:600px; width:100%">
-        <tbody><tr>
-            <td style="height: 5%; text-align:right; vertical-align:top" colspan="2">
-
-                <a href="#ctl00_Menu1_SkipLink"><img alt="Skip Navigation Links" src="index_files/WebResource_002.gif" style="border-width:0px;" height="0" width="0"></a><table id="ctl00_Menu1" class="nav_selected ctl00_Menu1_9 ctl00_Menu1_2" border="0" cellpadding="0" cellspacing="0">
-	<tbody><tr>
-		<td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n0"><table class="ctl00_Menu1_4 ctl00_Menu1_8" border="0" cellpadding="0" cellspacing="0" width="100%">
-			<tbody><tr>
-				<td style="white-space:nowrap;"><a class="ctl00_Menu1_1 ctl00_Menu1_3 ctl00_Menu1_7" href="http://sms.tsu.ge/sms/Students/StudAnk.aspx">სტუდენტის ანკეტა</a></td>
-			</tr>
-		</tbody></table></td><td style="width:1px;"></td><td style="width:1px;"></td><td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n1"><table class="ctl00_Menu1_4 ctl00_Menu1_8" border="0" cellpadding="0" cellspacing="0" width="100%">
-			<tbody><tr>
-				<td style="white-space:nowrap;"><a class="ctl00_Menu1_1 ctl00_Menu1_3 ctl00_Menu1_7" href="http://sms.tsu.ge/sms/Students/StudBarati.aspx">სასწავლო ბარათი</a></td>
-			</tr>
-		</tbody></table></td><td style="width:1px;"></td><td style="width:1px;"></td><td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n2"><table class="ctl00_Menu1_4 ctl00_Menu1_8" border="0" cellpadding="0" cellspacing="0" width="100%">
-			<tbody><tr>
-				<td style="white-space:nowrap;"><a class="ctl00_Menu1_1 ctl00_Menu1_3 ctl00_Menu1_7" href="http://sms.tsu.ge/sms/Students/StudIndCxrili.aspx">ინდივიდუალური ცხრილი</a></td>
-			</tr>
-		</tbody></table></td><td style="width:1px;"></td><td style="width:1px;"></td><td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n3"><table class="ctl00_Menu1_4 ctl00_Menu1_8" border="0" cellpadding="0" cellspacing="0" width="100%">
-			<tbody><tr>
-				<td style="white-space:nowrap;"><a class="ctl00_Menu1_1 ctl00_Menu1_3 ctl00_Menu1_7" href="http://sms.tsu.ge/sms/Students/StudSascProg.aspx">სასწავლო პროგრამა</a></td>
-			</tr>
-		</tbody></table></td><td style="width:1px;"></td><td style="width:1px;"></td><td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n4"><table class="ctl00_Menu1_4 ctl00_Menu1_8" border="0" cellpadding="0" cellspacing="0" width="100%">
-			<tbody><tr>
-				<td style="white-space:nowrap;"><a class="ctl00_Menu1_1 ctl00_Menu1_3 ctl00_Menu1_7" href="http://sms.tsu.ge/sms/Students/StudSpec.aspx">სპეციალობათა არჩევა</a></td>
-			</tr>
-		</tbody></table></td><td style="width:1px;"></td><td style="width:1px;"></td><td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n5"><table class="ctl00_Menu1_4 ctl00_Menu1_8" border="0" cellpadding="0" cellspacing="0" width="100%">
-			<tbody><tr>
-				<td style="white-space:nowrap;"><a class="ctl00_Menu1_1 ctl00_Menu1_3 ctl00_Menu1_7" href="http://sms.tsu.ge/sms/Students/Cxrilebi.aspx">ცხრილები</a></td>
-			</tr>
-		</tbody></table></td><td style="width:1px;"></td><td style="width:1px;"></td><td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n6"><table class="ctl00_Menu1_4 ctl00_Menu1_8" border="0" cellpadding="0" cellspacing="0" width="100%">
-			<tbody><tr>
-				<td style="white-space:nowrap;"><a class="ctl00_Menu1_1 ctl00_Menu1_3 ctl00_Menu1_7" href="http://sms.tsu.ge/sms/Students/Corespondencia/FakultMimowera.aspx">კორესპონდენცია</a></td>
-			</tr>
-		</tbody></table></td><td style="width:1px;"></td><td style="width:1px;"></td><td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n7"><table class="ctl00_Menu1_4 ctl00_Menu1_8" border="0" cellpadding="0" cellspacing="0" width="100%">
-			<tbody><tr>
-				<td style="white-space:nowrap;"><a class="ctl00_Menu1_1 ctl00_Menu1_3 ctl00_Menu1_7" href="javascript:__doPostBack('ctl00$Menu1','%E1%83%9E%E1%83%A0%E1%83%9D%E1%83%A4%E1%83%98%E1%83%9A%E1%83%98%E1%83%A1%20%E1%83%A0%E1%83%94%E1%83%93')">პროფილი</a></td><td style="width:0;"><img src="index_files/WebResource.gif" alt="Expand პროფილი" style="border-style:none;vertical-align:middle;"></td>
-			</tr>
-		</tbody></table></td><td style="width:1px;"></td>
-	</tr>
-</tbody></table><div id="ctl00_Menu1n7Items" class="ctl00_Menu1_0">
-	<table border="0" cellpadding="0" cellspacing="0">
-		<tbody><tr style="height:1px;">
-			<td></td>
-		</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n8">
-			<td><table class="ctl00_Menu1_6" border="0" cellpadding="0" cellspacing="0" width="100%">
-				<tbody><tr>
-					<td style="white-space:nowrap;width:100%;"><a class="ctl00_Menu1_1 ctl00_Menu1_5" href="http://sms.tsu.ge/sms/Students/Orders.aspx">ინდ. ადმინისტ.-სამართლებრივი აქტები</a></td>
-				</tr>
-			</tbody></table></td>
-		</tr><tr style="height:1px;">
-			<td></td>
-		</tr><tr style="height:1px;">
-			<td></td>
-		</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n9">
-			<td><table class="ctl00_Menu1_6" border="0" cellpadding="0" cellspacing="0" width="100%">
-				<tbody><tr>
-					<td style="white-space:nowrap;width:100%;"><a class="ctl00_Menu1_1 ctl00_Menu1_5" href="http://sms.tsu.ge/sms/Students/ProfileEdit/ChangePassword.aspx">პაროლის შეცვლა</a></td>
-				</tr>
-			</tbody></table></td>
-		</tr><tr style="height:1px;">
-			<td></td>
-		</tr><tr style="height:1px;">
-			<td></td>
-		</tr><tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n10">
-			<td><table class="ctl00_Menu1_6" border="0" cellpadding="0" cellspacing="0" width="100%">
-				<tbody><tr>
-					<td style="white-space:nowrap;width:100%;"><a class="ctl00_Menu1_1 ctl00_Menu1_5" href="http://sms.tsu.ge/sms/Students/Information/Financial.aspx">გადახდები</a></td>
-				</tr>
-			</tbody></table></td>
-		</tr><tr style="height:1px;">
-			<td></td>
-		</tr>
-	</tbody></table><div class="ctl00_Menu1_6 ctl00_Menu1_0" id="ctl00_Menu1n7ItemsUp" onmouseover="PopOut_Up(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
-		<img src="index_files/WebResource_003.gif" alt="Scroll up">
-	</div><div class="ctl00_Menu1_6 ctl00_Menu1_0" id="ctl00_Menu1n7ItemsDn" onmouseover="PopOut_Down(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
-		<img src="index_files/WebResource_004.gif" alt="Scroll down">
-	</div>
-</div><a id="ctl00_Menu1_SkipLink"></a>
-
-                        </td>
-        </tr>
-        <tr>
-            <td style="height: 5%" align="left" valign="top">
-
-                <span id="ctl00_PageName" style="color:Blue;font-size:12pt;font-weight:bold;"></span>
-
-                </td>
-            <td style="height: 5%" align="right" valign="top">
-
-                <span id="ctl00_Label1" style="display:inline-block;color:Red;font-size:10pt;font-weight:normal;height:25px;">სისტემაში შესულია სტუდენტი:ლომია ალექსანდრე</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="ctl00_LinkButton1" href="javascript:__doPostBack('ctl00$LinkButton1','')">გამოსვლა</a>
-                </td>
-        </tr>
-        <tr>
-            <td style="height: 2%" colspan="2" align="center" valign="top">
-                <span id="ctl00_Label2" style="color:Red;font-size:11pt;"></span>
-               <br>
-
-               <span id="ctl00_Label3" style="color:Red;font-size:11pt;"></span>
-
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" valign="top">
-    <div>
-
-    <table class="style1">
-        <tbody><tr>
-            <td>
-    <div>
-
-</div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div>
-	<table rules="all" id="ctl00_C1_GridView2" style="border-collapse:collapse;" border="1" cellspacing="0">
-		<tbody><tr style="font-size:10pt;">
-			<th scope="col">დისციპლინა</th><th scope="col">ლექცია</th><th scope="col">სამუშაო ჯგუფი</th><th scope="col">პრაქტიკული</th><th scope="col">ლაბორატორიული</th>
-		</tr><tr style="font-size:9pt;">
-			<td>
-                                <span id="ctl00_C1_GridView2_ctl02_SaganiText">კომპიუტერული ტოპოლოგიის ალგორითმები</span>
-                            </td><td>
-                                <table class="style1" style="border: medium double #808080;">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl02_Label3">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl02_KvirsDge1">ორშაბათი</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl02_ChatAdgili1">კორ:XI, სართ:2, აუდიტ:202</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl02_StartTime1">17:00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl02_EndTime1">18:00</span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td><td title="ფორმალური ენები და სასრული ავტომატები, Dor
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>
+			sms.tsu.ge
+		</title>
+		<link href="index_files/jquery-ui.css" rel="stylesheet">
+		<link href="index_files/jquery_002.css" rel="stylesheet">
+		<link href="index_files/jquery.css" rel="stylesheet">
+		<script src="index_files/analytics.js" async=""></script>
+		<script type="text/javascript">
+			var version = navigator.appVersion;
+
+			function showKeyCode(e) {
+
+				var keycode = (window.event) ? event.keyCode : e.keyCode;
+
+				if ((version.indexOf('MSIE') != -1)) {
+
+					if (keycode == 116) {
+
+						event.keyCode = 0;
+
+						event.returnValue = false;
+
+						return false;
+
+					}
+
+				}
+
+				else {
+
+					if (keycode == 116) {
+
+						return false;
+
+					}
+
+				}
+
+			}
+		</script>
+		<style type="text/css">
+			.style2 {
+				text-align:right;
+			}
+		</style>
+		<style type="text/css">
+			body {
+				margin-left:0px;
+				margin-top:0px;
+				margin-right:0px;
+				margin-bottom:0px;
+				background-color:#ffffff;
+			}
+
+			table.nav {
+				border-top:solid 1px #707491;
+			}
+
+			table.nav td {
+				padding-left:10px;
+				padding-right:10px;
+			}
+
+			table.nav_selected {
+				background:url('App_Themes/BeachBlue/_images/nav_hi_bg.jpg') repeat-y left top;
+			}
+
+			table.nav_selected td {
+				background:url('App_Themes/BeachBlue/_images/img_nav_hilight.gif') no-repeat left top;
+			}
+
+			a.nav {
+				display:block;
+				height:100%;
+				width:100%;
+				padding-top:4px;
+				padding-bottom:4px;
+			}
+
+			table.sublevel {
+				border-top:solid 1px #707491;
+				background:#c7c4d5 url(App_Themes/BeachBlue/_images/subnav_lo_bg.gif) repeat-y top left;
+			}
+
+			table.sublevel td {
+				padding-left:10px;
+				padding-right:10px;
+			}
+
+			table.sublevel_selected {
+				background:#c7c4d5 url(App_Themes/BeachBlue/_images/nav_hi_bg.jpg) repeat-y top left;
+			}
+
+			table.sublevel_selected td {
+				background:url('App_Themes/BeachBlue/_images/img_nav_hilight.gif') no-repeat left top;
+			}
+
+			a.sublevel {
+				display:block;
+				height:100%;
+				width:100%;
+				padding-top:4px;
+				padding-bottom:4px;
+			}
+		</style>
+		<style type="text/css">
+			.ctl00_Menu1_0 {
+				background-color:white;
+				visibility:hidden;
+				display:none;
+				position:absolute;
+				left:0px;
+				top:0px;
+			}
+
+			.ctl00_Menu1_1 {
+				text-decoration:none;
+			}
+
+			.ctl00_Menu1_2 {
+				width:100%;
+			}
+
+			.ctl00_Menu1_3 {
+				color:#8c4510;
+				font-size:10pt;
+			}
+
+			.ctl00_Menu1_4 {
+				background-color:#fff7e7;
+				padding:1px 3px 1px 3px;
+			}
+
+			.ctl00_Menu1_5 {
+				color:#000066;
+			}
+
+			.ctl00_Menu1_6 {
+				background-color:Gray;
+			}
+
+			.ctl00_Menu1_7 {
+				color:White;
+				font-weight:bold;
+			}
+
+			.ctl00_Menu1_8 {
+				background-color:#0000cc;
+				border-color:#0000cc;
+			}
+
+			.ctl00_Menu1_9 {
+				background-color:Blue;
+				border-width:1px;
+				border-style:Solid;
+			}
+
+			.ctl00_Menu1_10 {
+			}
+
+			.ctl00_Menu1_11 {
+				background-color:#507cd1;
+			}
+
+			.ctl00_Menu1_12 {
+				color:White;
+			}
+
+			.ctl00_Menu1_13 {
+				color:White;
+				background-color:#284e98;
+			}
+		</style>
+	</head>
+	<body onload="JavaScript:document.body.focus();" onkeydown="return showKeyCode(event)" style="padding-top:0px">
+		<form name="aspnetForm" method="post" action="./Cxrilebi.aspx" id="aspnetForm">
+			<div>
+				<input name="__EVENTTARGET" id="__EVENTTARGET" value="" type="hidden">
+				<input name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" type="hidden">
+				<input name="__VIEWSTATE" id="__VIEWSTATE" value="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" type="hidden">
+			</div>
+			<script type="text/javascript">
+				//<![CDATA[
+				var theForm = document.forms['aspnetForm'];
+				if (!theForm) {
+					theForm = document.aspnetForm;
+				}
+				function __doPostBack(eventTarget, eventArgument) {
+					if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+						theForm.__EVENTTARGET.value = eventTarget;
+						theForm.__EVENTARGUMENT.value = eventArgument;
+						theForm.submit();
+					}
+				}
+				//]]>
+			</script>
+			<script src="index_files/WebResource.js" type="text/javascript"></script>
+			<script src="index_files/ScriptResource_002.js" type="text/javascript"></script>
+			<script src="index_files/ScriptResource.js" type="text/javascript"></script>
+			<script src="index_files/ScriptResource_003.js" type="text/javascript"></script>
+			<script src="index_files/jquery-2.js" type="text/javascript"></script>
+			<script src="index_files/jquery-ui-1.js" type="text/javascript"></script>
+			<script src="index_files/jquery.js" type="text/javascript"></script>
+			<script src="index_files/MyScript.js" type="text/javascript"></script>
+			<div>
+				<input name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="DE5F4BDC" type="hidden">
+				<input name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" type="hidden">
+				<input name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="dYxaNZQlsNVkpcMKTwjk2q9U8wkOZzzhjh1GmrEgz7pa/BKqSutKJ1c/QJnoex1c3T2FvlI+vaFVmctvAAUHT+wHQcacJ4V5Irqox8OUxozou4mxWiZE0yKVBLts15Trr2ERVCa4ClyrXRRvytqchg==" type="hidden">
+			</div>
+			<script type="text/javascript">
+				//<![CDATA[
+				Sys.WebForms.PageRequestManager._initialize('ctl00$SM1', 'aspnetForm', [], [], [], 90, 'ctl00');
+				//]]>
+			</script>
+			<table style="height:600px; width:100%">
+				<tbody>
+					<tr>
+						<td style="height: 5%; text-align:right; vertical-align:top" colspan="2">
+							<a href="#ctl00_Menu1_SkipLink"><img alt="Skip Navigation Links" src="index_files/WebResource_002.gif" style="border-width:0px;" height="0" width="0"></a>
+							<table id="ctl00_Menu1" class="nav_selected ctl00_Menu1_9 ctl00_Menu1_2" border="0" cellpadding="0" cellspacing="0">
+								<tbody>
+									<tr>
+										<td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n0">
+											<table class="ctl00_Menu1_4 ctl00_Menu1_8" border="0" cellpadding="0" cellspacing="0" width="100%">
+												<tbody>
+													<tr>
+														<td style="white-space:nowrap;">
+															<a class="ctl00_Menu1_1 ctl00_Menu1_3 ctl00_Menu1_7" href="http://sms.tsu.ge/sms/Students/StudAnk.aspx">სტუდენტის ანკეტა</a>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+										<td style="width:1px;"></td>
+										<td style="width:1px;"></td>
+										<td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n1">
+											<table class="ctl00_Menu1_4 ctl00_Menu1_8" border="0" cellpadding="0" cellspacing="0" width="100%">
+												<tbody>
+													<tr>
+														<td style="white-space:nowrap;">
+															<a class="ctl00_Menu1_1 ctl00_Menu1_3 ctl00_Menu1_7" href="http://sms.tsu.ge/sms/Students/StudBarati.aspx">სასწავლო ბარათი</a>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+										<td style="width:1px;"></td>
+										<td style="width:1px;"></td>
+										<td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n2">
+											<table class="ctl00_Menu1_4 ctl00_Menu1_8" border="0" cellpadding="0" cellspacing="0" width="100%">
+												<tbody>
+													<tr>
+														<td style="white-space:nowrap;">
+															<a class="ctl00_Menu1_1 ctl00_Menu1_3 ctl00_Menu1_7" href="http://sms.tsu.ge/sms/Students/StudIndCxrili.aspx">ინდივიდუალური ცხრილი</a>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+										<td style="width:1px;"></td>
+										<td style="width:1px;"></td>
+										<td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n3">
+											<table class="ctl00_Menu1_4 ctl00_Menu1_8" border="0" cellpadding="0" cellspacing="0" width="100%">
+												<tbody>
+													<tr>
+														<td style="white-space:nowrap;">
+															<a class="ctl00_Menu1_1 ctl00_Menu1_3 ctl00_Menu1_7" href="http://sms.tsu.ge/sms/Students/StudSascProg.aspx">სასწავლო პროგრამა</a>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+										<td style="width:1px;"></td>
+										<td style="width:1px;"></td>
+										<td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n4">
+											<table class="ctl00_Menu1_4 ctl00_Menu1_8" border="0" cellpadding="0" cellspacing="0" width="100%">
+												<tbody>
+													<tr>
+														<td style="white-space:nowrap;">
+															<a class="ctl00_Menu1_1 ctl00_Menu1_3 ctl00_Menu1_7" href="http://sms.tsu.ge/sms/Students/StudSpec.aspx">სპეციალობათა არჩევა</a>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+										<td style="width:1px;"></td>
+										<td style="width:1px;"></td>
+										<td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n5">
+											<table class="ctl00_Menu1_4 ctl00_Menu1_8" border="0" cellpadding="0" cellspacing="0" width="100%">
+												<tbody>
+													<tr>
+														<td style="white-space:nowrap;">
+															<a class="ctl00_Menu1_1 ctl00_Menu1_3 ctl00_Menu1_7" href="http://sms.tsu.ge/sms/Students/Cxrilebi.aspx">ცხრილები</a>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+										<td style="width:1px;"></td>
+										<td style="width:1px;"></td>
+										<td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n6">
+											<table class="ctl00_Menu1_4 ctl00_Menu1_8" border="0" cellpadding="0" cellspacing="0" width="100%">
+												<tbody>
+													<tr>
+														<td style="white-space:nowrap;">
+															<a class="ctl00_Menu1_1 ctl00_Menu1_3 ctl00_Menu1_7" href="http://sms.tsu.ge/sms/Students/Corespondencia/FakultMimowera.aspx">კორესპონდენცია</a>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+										<td style="width:1px;"></td>
+										<td style="width:1px;"></td>
+										<td onmouseover="Menu_HoverStatic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n7">
+											<table class="ctl00_Menu1_4 ctl00_Menu1_8" border="0" cellpadding="0" cellspacing="0" width="100%">
+												<tbody>
+													<tr>
+														<td style="white-space:nowrap;">
+															<a class="ctl00_Menu1_1 ctl00_Menu1_3 ctl00_Menu1_7" href="javascript:__doPostBack('ctl00$Menu1','%E1%83%9E%E1%83%A0%E1%83%9D%E1%83%A4%E1%83%98%E1%83%9A%E1%83%98%E1%83%A1%20%E1%83%A0%E1%83%94%E1%83%93')">პროფილი</a>
+														</td>
+														<td style="width:0;">
+															<img src="index_files/WebResource.gif" alt="Expand პროფილი" style="border-style:none;vertical-align:middle;">
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+										<td style="width:1px;"></td>
+									</tr>
+								</tbody>
+							</table>
+							<div id="ctl00_Menu1n7Items" class="ctl00_Menu1_0">
+								<table border="0" cellpadding="0" cellspacing="0">
+									<tbody>
+										<tr style="height:1px;">
+											<td></td>
+										</tr>
+										<tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n8">
+											<td>
+												<table class="ctl00_Menu1_6" border="0" cellpadding="0" cellspacing="0" width="100%">
+													<tbody>
+														<tr>
+															<td style="white-space:nowrap;width:100%;">
+																<a class="ctl00_Menu1_1 ctl00_Menu1_5" href="http://sms.tsu.ge/sms/Students/Orders.aspx">ინდ. ადმინისტ.-სამართლებრივი აქტები</a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>
+										<tr style="height:1px;">
+											<td></td>
+										</tr>
+										<tr style="height:1px;">
+											<td></td>
+										</tr>
+										<tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n9">
+											<td>
+												<table class="ctl00_Menu1_6" border="0" cellpadding="0" cellspacing="0" width="100%">
+													<tbody>
+														<tr>
+															<td style="white-space:nowrap;width:100%;">
+																<a class="ctl00_Menu1_1 ctl00_Menu1_5" href="http://sms.tsu.ge/sms/Students/ProfileEdit/ChangePassword.aspx">პაროლის შეცვლა</a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>
+										<tr style="height:1px;">
+											<td></td>
+										</tr>
+										<tr style="height:1px;">
+											<td></td>
+										</tr>
+										<tr onmouseover="Menu_HoverDynamic(this)" onmouseout="Menu_Unhover(this)" onkeyup="Menu_Key(event)" id="ctl00_Menu1n10">
+											<td>
+												<table class="ctl00_Menu1_6" border="0" cellpadding="0" cellspacing="0" width="100%">
+													<tbody>
+														<tr>
+															<td style="white-space:nowrap;width:100%;">
+																<a class="ctl00_Menu1_1 ctl00_Menu1_5" href="http://sms.tsu.ge/sms/Students/Information/Financial.aspx">გადახდები</a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>
+										<tr style="height:1px;">
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="ctl00_Menu1_6 ctl00_Menu1_0" id="ctl00_Menu1n7ItemsUp" onmouseover="PopOut_Up(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
+									<img src="index_files/WebResource_003.gif" alt="Scroll up">
+								</div>
+								<div class="ctl00_Menu1_6 ctl00_Menu1_0" id="ctl00_Menu1n7ItemsDn" onmouseover="PopOut_Down(this)" onmouseout="PopOut_Stop(this)" style="text-align:center;">
+									<img src="index_files/WebResource_004.gif" alt="Scroll down">
+								</div>
+							</div>
+							<a id="ctl00_Menu1_SkipLink"></a>
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 5%" align="left" valign="top">
+							<span id="ctl00_PageName" style="color:Blue;font-size:12pt;font-weight:bold;"></span>
+						</td>
+						<td style="height: 5%" align="right" valign="top">
+							<span id="ctl00_Label1" style="display:inline-block;color:Red;font-size:10pt;font-weight:normal;height:25px;">სისტემაში შესულია სტუდენტი:ლომია ალექსანდრე</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="ctl00_LinkButton1" href="javascript:__doPostBack('ctl00$LinkButton1','')">გამოსვლა</a>
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 2%" colspan="2" align="center" valign="top">
+							<span id="ctl00_Label2" style="color:Red;font-size:11pt;"></span> <br>
+							<span id="ctl00_Label3" style="color:Red;font-size:11pt;"></span>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" valign="top">
+							<div>
+								<table class="style1">
+									<tbody>
+										<tr>
+											<td>
+												<div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div>
+													<table rules="all" id="ctl00_C1_GridView2" style="border-collapse:collapse;" border="1" cellspacing="0">
+														<tbody>
+															<tr style="font-size:10pt;">
+																<th scope="col">დისციპლინა</th>
+																<th scope="col">ლექცია</th>
+																<th scope="col">სამუშაო ჯგუფი</th>
+																<th scope="col">პრაქტიკული</th>
+																<th scope="col">ლაბორატორიული</th>
+															</tr>
+															<tr style="font-size:9pt;">
+																<td>
+																	<span id="ctl00_C1_GridView2_ctl02_SaganiText">კომპიუტერული ტოპოლოგიის ალგორითმები</span>
+																</td>
+																<td>
+																	<table class="style1" style="border: medium double #808080;">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl02_Label3">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl02_KvirsDge1">ორშაბათი</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl02_ChatAdgili1">კორ:XI, სართ:2, აუდიტ:202</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl02_StartTime1">17:00</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl02_EndTime1">18:00</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+																<td title="ფორმალური ენები და სასრული ავტომატები, Dor
 მათემატიკური დაპროგრამება, Dor
 ქსელური ტექნოლოგიები და კომუნიკაციები, Dor
 " style="background-color:Red;">
-                                <table class="style1" style="border: medium double #808080">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl02_Label13">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl02_KvirsDge2">--------</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl02_ChatAdgili2">კორ:-----------, სართ:0, აუდიტ:----------</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl02_StartTime2">00:00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl02_EndTime2">00:00</span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td><td>
-                                <table class="style1" style="border: medium double #808080;">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl02_Label23">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl02_KvirsDge3">ორშაბათი</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl02_ChatAdgili3">კორ:XI, სართ:2, აუდიტ:202</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl02_StartTime3">18:00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl02_EndTime3">19:00</span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td><td>
-                                <table class="style1" style="border: medium double #808080;">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl02_Label33">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl02_KvirsDge4"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl02_ChatAdgili4"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl02_StartTime4"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl02_EndTime4"></span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td>
-		</tr><tr style="font-size:9pt;">
-			<td>
-                                <span id="ctl00_C1_GridView2_ctl03_SaganiText">ფორმალური ენები და სასრული ავტომატები</span>
-                            </td><td>
-                                <table class="style1" style="border: medium double #808080;">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl03_Label3">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl03_KvirsDge1">სამშაბათი</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl03_ChatAdgili1">კორ:XI, სართ:2, აუდიტ:210</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl03_StartTime1">14:00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl03_EndTime1">15:00</span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td><td title="კომპიუტერული ტოპოლოგიის ალგორითმები, Dor
+																	<table class="style1" style="border: medium double #808080">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl02_Label13">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl02_KvirsDge2">--------</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl02_ChatAdgili2">კორ:-----------, სართ:0, აუდიტ:----------</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl02_StartTime2">00:00</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl02_EndTime2">00:00</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+																<td>
+																	<table class="style1" style="border: medium double #808080;">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl02_Label23">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl02_KvirsDge3">ორშაბათი</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl02_ChatAdgili3">კორ:XI, სართ:2, აუდიტ:202</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl02_StartTime3">18:00</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl02_EndTime3">19:00</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+																<td>
+																	<table class="style1" style="border: medium double #808080;">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl02_Label33">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl02_KvirsDge4"></span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl02_ChatAdgili4"></span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl02_StartTime4"></span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl02_EndTime4"></span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+															</tr>
+															<tr style="font-size:9pt;">
+																<td>
+																	<span id="ctl00_C1_GridView2_ctl03_SaganiText">ფორმალური ენები და სასრული ავტომატები</span>
+																</td>
+																<td>
+																	<table class="style1" style="border: medium double #808080;">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl03_Label3">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl03_KvirsDge1">სამშაბათი</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl03_ChatAdgili1">კორ:XI, სართ:2, აუდიტ:210</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl03_StartTime1">14:00</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl03_EndTime1">15:00</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+																<td title="კომპიუტერული ტოპოლოგიის ალგორითმები, Dor
 მათემატიკური დაპროგრამება, Dor
 ქსელური ტექნოლოგიები და კომუნიკაციები, Dor
 " style="background-color:Red;">
-                                <table class="style1" style="border: medium double #808080">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl03_Label13">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl03_KvirsDge2">--------</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl03_ChatAdgili2">კორ:-----------, სართ:0, აუდიტ:----------</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl03_StartTime2">00:00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl03_EndTime2">00:00</span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td><td title="მათემატიკური დაპროგრამება, Dor
+																	<table class="style1" style="border: medium double #808080">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl03_Label13">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl03_KvirsDge2">--------</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl03_ChatAdgili2">კორ:-----------, სართ:0, აუდიტ:----------</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl03_StartTime2">00:00</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl03_EndTime2">00:00</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+																<td title="მათემატიკური დაპროგრამება, Dor
 " style="background-color:Red;">
-                                <table class="style1" style="border: medium double #808080;">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl03_Label23">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl03_KvirsDge3">ხუთშაბათი</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl03_ChatAdgili3">კორ:XI, სართ:2, აუდიტ:209</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl03_StartTime3">11:00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl03_EndTime3">13:00</span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td><td>
-                                <table class="style1" style="border: medium double #808080;">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl03_Label33">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl03_KvirsDge4"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl03_ChatAdgili4"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl03_StartTime4"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl03_EndTime4"></span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td>
-		</tr><tr style="font-size:9pt;">
-			<td>
-                                <span id="ctl00_C1_GridView2_ctl04_SaganiText">ინტელექტუალური სისტემები</span>
-                            </td><td>
-                                <table class="style1" style="border: medium double #808080;">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl04_Label3">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl04_KvirsDge1">ოთხშაბათი</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl04_ChatAdgili1">კორ:XI, სართ:0, აუდიტ:010</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl04_StartTime1">13:00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl04_EndTime1">14:00</span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td><td>
-                                <table class="style1" style="border: medium double #808080">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl04_Label13">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl04_KvirsDge2">ორშაბათი</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl04_ChatAdgili2">კორ:XI, სართ:2, აუდიტ:203</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl04_StartTime2">16:00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl04_EndTime2">17:00</span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td><td>
-                                <table class="style1" style="border: medium double #808080;">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl04_Label23">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl04_KvirsDge3"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl04_ChatAdgili3"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl04_StartTime3"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl04_EndTime3"></span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td><td>
-                                <table class="style1" style="border: medium double #808080;">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl04_Label33">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl04_KvirsDge4">სამშაბათი</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl04_ChatAdgili4">კორ:XI, სართ:4, აუდიტ:419</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl04_StartTime4">13:00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl04_EndTime4">14:00</span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td>
-		</tr><tr style="font-size:9pt;">
-			<td>
-                                <span id="ctl00_C1_GridView2_ctl05_SaganiText">მათემატიკური დაპროგრამება</span>
-                            </td><td title="ფორმალური ენები და სასრული ავტომატები, Dor
+																	<table class="style1" style="border: medium double #808080;">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl03_Label23">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl03_KvirsDge3">ხუთშაბათი</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl03_ChatAdgili3">კორ:XI, სართ:2, აუდიტ:209</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl03_StartTime3">11:00</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl03_EndTime3">13:00</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+																<td>
+																	<table class="style1" style="border: medium double #808080;">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl03_Label33">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl03_KvirsDge4"></span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl03_ChatAdgili4"></span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl03_StartTime4"></span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl03_EndTime4"></span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+															</tr>
+															<tr style="font-size:9pt;">
+																<td>
+																	<span id="ctl00_C1_GridView2_ctl04_SaganiText">ინტელექტუალური სისტემები</span>
+																</td>
+																<td>
+																	<table class="style1" style="border: medium double #808080;">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl04_Label3">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl04_KvirsDge1">ოთხშაბათი</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl04_ChatAdgili1">კორ:XI, სართ:0, აუდიტ:010</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl04_StartTime1">13:00</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl04_EndTime1">14:00</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+																<td>
+																	<table class="style1" style="border: medium double #808080">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl04_Label13">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl04_KvirsDge2">ორშაბათი</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl04_ChatAdgili2">კორ:XI, სართ:2, აუდიტ:203</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl04_StartTime2">16:00</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl04_EndTime2">17:00</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+																<td>
+																	<table class="style1" style="border: medium double #808080;">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl04_Label23">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl04_KvirsDge3"></span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl04_ChatAdgili3"></span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl04_StartTime3"></span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl04_EndTime3"></span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+																<td>
+																	<table class="style1" style="border: medium double #808080;">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl04_Label33">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl04_KvirsDge4">სამშაბათი</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl04_ChatAdgili4">კორ:XI, სართ:4, აუდიტ:419</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl04_StartTime4">13:00</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl04_EndTime4">14:00</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+															</tr>
+															<tr style="font-size:9pt;">
+																<td>
+																	<span id="ctl00_C1_GridView2_ctl05_SaganiText">მათემატიკური დაპროგრამება</span>
+																</td>
+																<td title="ფორმალური ენები და სასრული ავტომატები, Dor
 " style="background-color:Red;">
-                                <table class="style1" style="border: medium double #808080;">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl05_Label3">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl05_KvirsDge1">ხუთშაბათი</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl05_ChatAdgili1">კორ:XI, სართ:0, აუდიტ:010</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl05_StartTime1">11:00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl05_EndTime1">12:00</span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td><td title="კომპიუტერული ტოპოლოგიის ალგორითმები, Dor
+																	<table class="style1" style="border: medium double #808080;">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl05_Label3">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl05_KvirsDge1">ხუთშაბათი</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl05_ChatAdgili1">კორ:XI, სართ:0, აუდიტ:010</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl05_StartTime1">11:00</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl05_EndTime1">12:00</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+																<td title="კომპიუტერული ტოპოლოგიის ალგორითმები, Dor
 ფორმალური ენები და სასრული ავტომატები, Dor
 ქსელური ტექნოლოგიები და კომუნიკაციები, Dor
 " style="background-color:Red;">
-                                <table class="style1" style="border: medium double #808080">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl05_Label13">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl05_KvirsDge2">--------</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl05_ChatAdgili2">კორ:-----------, სართ:0, აუდიტ:----------</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl05_StartTime2">00:00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl05_EndTime2">00:00</span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td><td>
-                                <table class="style1" style="border: medium double #808080;">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl05_Label23">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl05_KvirsDge3">სამშაბათი</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl05_ChatAdgili3">კორ:XI, სართ:2, აუდიტ:219</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl05_StartTime3">11:00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl05_EndTime3">13:00</span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td><td>
-                                <table class="style1" style="border: medium double #808080;">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl05_Label33">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl05_KvirsDge4"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl05_ChatAdgili4"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl05_StartTime4"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl05_EndTime4"></span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td>
-		</tr><tr style="font-size:9pt;">
-			<td>
-                                <span id="ctl00_C1_GridView2_ctl06_SaganiText">ქსელური ტექნოლოგიები და კომუნიკაციები</span>
-                            </td><td>
-                                <table class="style1" style="border: medium double #808080;">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl06_Label3">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl06_KvirsDge1">ხუთშაბათი</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl06_ChatAdgili1">კორ:XI, სართ:0, აუდიტ:010</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl06_StartTime1">13:00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl06_EndTime1">14:00</span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td><td title="კომპიუტერული ტოპოლოგიის ალგორითმები, Dor
+																	<table class="style1" style="border: medium double #808080">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl05_Label13">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl05_KvirsDge2">--------</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl05_ChatAdgili2">კორ:-----------, სართ:0, აუდიტ:----------</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl05_StartTime2">00:00</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl05_EndTime2">00:00</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+																<td>
+																	<table class="style1" style="border: medium double #808080;">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl05_Label23">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl05_KvirsDge3">სამშაბათი</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl05_ChatAdgili3">კორ:XI, სართ:2, აუდიტ:219</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl05_StartTime3">11:00</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl05_EndTime3">13:00</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+																<td>
+																	<table class="style1" style="border: medium double #808080;">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl05_Label33">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl05_KvirsDge4"></span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl05_ChatAdgili4"></span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl05_StartTime4"></span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl05_EndTime4"></span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+															</tr>
+															<tr style="font-size:9pt;">
+																<td>
+																	<span id="ctl00_C1_GridView2_ctl06_SaganiText">ქსელური ტექნოლოგიები და კომუნიკაციები</span>
+																</td>
+																<td>
+																	<table class="style1" style="border: medium double #808080;">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl06_Label3">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl06_KvirsDge1">ხუთშაბათი</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl06_ChatAdgili1">კორ:XI, სართ:0, აუდიტ:010</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl06_StartTime1">13:00</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl06_EndTime1">14:00</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+																<td title="კომპიუტერული ტოპოლოგიის ალგორითმები, Dor
 ფორმალური ენები და სასრული ავტომატები, Dor
 მათემატიკური დაპროგრამება, Dor
 " style="background-color:Red;">
-                                <table class="style1" style="border: medium double #808080">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl06_Label13">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl06_KvirsDge2">--------</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl06_ChatAdgili2">კორ:-----------, სართ:0, აუდიტ:----------</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl06_StartTime2">00:00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl06_EndTime2">00:00</span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td><td>
-                                <table class="style1" style="border: medium double #808080;">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl06_Label23">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl06_KvirsDge3"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl06_ChatAdgili3"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl06_StartTime3"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl06_EndTime3"></span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td><td>
-                                <table class="style1" style="border: medium double #808080;">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl06_Label33">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl06_KvirsDge4">ხუთშაბათი</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl06_ChatAdgili4">კორ:XI, სართ:4, აუდიტ:407</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl06_StartTime4">14:00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl06_EndTime4">16:00</span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td>
-		</tr><tr style="font-size:9pt;">
-			<td>
-                                <span id="ctl00_C1_GridView2_ctl07_SaganiText">ინფორმაციის თეორია და კოდირება</span>
-                            </td><td>
-                                <table class="style1" style="border: medium double #808080;">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl07_Label3">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl07_KvirsDge1">პარასკევი</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl07_ChatAdgili1">კორ:XI, სართ:3, აუდიტ:320</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl07_StartTime1">15:00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl07_EndTime1">16:00</span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td><td>
-                                <table class="style1" style="border: medium double #808080">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl07_Label13">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl07_KvirsDge2">პარასკევი</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl07_ChatAdgili2">კორ:XI, სართ:3, აუდიტ:320</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl07_StartTime2">16:00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl07_EndTime2">17:00</span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td><td>
-                                <table class="style1" style="border: medium double #808080;">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl07_Label23">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl07_KvirsDge3">პარასკევი</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl07_ChatAdgili3">კორ:XI, სართ:3, აუდიტ:320</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl07_StartTime3">17:00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl07_EndTime3">18:00</span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td><td>
-                                <table class="style1" style="border: medium double #808080;">
-                                    <tbody><tr>
-                                        <td class="style2">
-                                            <span id="ctl00_C1_GridView2_ctl07_Label33">კვირის დღე:</span>
-                                        </td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl07_KvirsDge4"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            აუდიტორი:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl07_ChatAdgili4"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დაწყების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl07_StartTime4"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="style2">
-                                            დასრულების დრო:</td>
-                                        <td>
-                                            <span id="ctl00_C1_GridView2_ctl07_EndTime4"></span>
-                                        </td>
-                                    </tr>
-                                </tbody></table>
-                            </td>
-		</tr>
-	</tbody></table>
-</div>
+																	<table class="style1" style="border: medium double #808080">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl06_Label13">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl06_KvirsDge2">--------</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl06_ChatAdgili2">კორ:-----------, სართ:0, აუდიტ:----------</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl06_StartTime2">00:00</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl06_EndTime2">00:00</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+																<td>
+																	<table class="style1" style="border: medium double #808080;">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl06_Label23">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl06_KvirsDge3"></span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl06_ChatAdgili3"></span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl06_StartTime3"></span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl06_EndTime3"></span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+																<td>
+																	<table class="style1" style="border: medium double #808080;">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl06_Label33">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl06_KvirsDge4">ხუთშაბათი</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl06_ChatAdgili4">კორ:XI, სართ:4, აუდიტ:407</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl06_StartTime4">14:00</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl06_EndTime4">16:00</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+															</tr>
+															<tr style="font-size:9pt;">
+																<td>
+																	<span id="ctl00_C1_GridView2_ctl07_SaganiText">ინფორმაციის თეორია და კოდირება</span>
+																</td>
+																<td>
+																	<table class="style1" style="border: medium double #808080;">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl07_Label3">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl07_KvirsDge1">პარასკევი</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl07_ChatAdgili1">კორ:XI, სართ:3, აუდიტ:320</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl07_StartTime1">15:00</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl07_EndTime1">16:00</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+																<td>
+																	<table class="style1" style="border: medium double #808080">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl07_Label13">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl07_KvirsDge2">პარასკევი</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl07_ChatAdgili2">კორ:XI, სართ:3, აუდიტ:320</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl07_StartTime2">16:00</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl07_EndTime2">17:00</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+																<td>
+																	<table class="style1" style="border: medium double #808080;">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl07_Label23">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl07_KvirsDge3">პარასკევი</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl07_ChatAdgili3">კორ:XI, სართ:3, აუდიტ:320</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl07_StartTime3">17:00</span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl07_EndTime3">18:00</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+																<td>
+																	<table class="style1" style="border: medium double #808080;">
+																		<tbody>
+																			<tr>
+																				<td class="style2">
+																					<span id="ctl00_C1_GridView2_ctl07_Label33">კვირის დღე:</span>
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl07_KvirsDge4"></span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					აუდიტორი:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl07_ChatAdgili4"></span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დაწყების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl07_StartTime4"></span>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="style2">
+																					დასრულების დრო:
+																				</td>
+																				<td>
+																					<span id="ctl00_C1_GridView2_ctl07_EndTime4"></span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												&nbsp;</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 15%" colspan="2">
+							&nbsp;</td>
+					</tr>
+				</tbody>
+			</table>
+			<script type="text/javascript">
+				//<![CDATA[
+				var ctl00_Menu1_Data = new Object();
+				ctl00_Menu1_Data.disappearAfter = 500;
+				ctl00_Menu1_Data.horizontalOffset = 0;
+				ctl00_Menu1_Data.verticalOffset = 0;
+				ctl00_Menu1_Data.staticHoverClass = 'ctl00_Menu1_13';
+				ctl00_Menu1_Data.staticHoverHyperLinkClass = 'ctl00_Menu1_12';
+				//]]>
+			</script>
+		</form>
+		<script type="text/javascript">
+			(function (i, s, o, g, r, a, m) {
+				i['GoogleAnalyticsObject'] = r;
+				i[r] = i[r] || function () {
 
-            </td>
-        </tr>
-        <tr>
-            <td>
-                &nbsp;</td>
-        </tr>
-    </tbody></table>
+						(i[r].q = i[r].q || []).push(arguments)
+					}, i[r].l = 1 * new Date();
+				a = s.createElement(o),
 
+					m = s.getElementsByTagName(o)[0];
+				a.async = 1;
+				a.src = g;
+				m.parentNode.insertBefore(a, m)
 
-    </div>
-            </td>
-        </tr>
-        <tr>
-            <td style="height: 15%" colspan="2">
-                &nbsp;</td>
-        </tr>
-    </tbody></table>
+			})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
+			ga('create', 'UA-54578603-1', 'tsu.ge');
 
-
-<script type="text/javascript">
-//<![CDATA[
-var ctl00_Menu1_Data = new Object();
-ctl00_Menu1_Data.disappearAfter = 500;
-ctl00_Menu1_Data.horizontalOffset = 0;
-ctl00_Menu1_Data.verticalOffset = 0;
-ctl00_Menu1_Data.staticHoverClass = 'ctl00_Menu1_13';
-ctl00_Menu1_Data.staticHoverHyperLinkClass = 'ctl00_Menu1_12';
-//]]>
-</script>
-</form>
-
-
-   <script type="text/javascript">
-
-
-
-
-
-         (function (i, s, o, g, r, a, m) {
-             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-
-                 (i[r].q = i[r].q || []).push(arguments)
-             }, i[r].l = 1 * new Date(); a = s.createElement(o),
-
-             m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-
-         })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-
-
-         ga('create', 'UA-54578603-1', 'tsu.ge');
-
-         ga('send', 'pageview');
-
-
-
- </script>
-
-
-</body></html>
+			ga('send', 'pageview');
+		</script>
+	</body>
+</html>
