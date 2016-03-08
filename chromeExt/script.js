@@ -24,6 +24,10 @@ function __extractTime(cell){
 	return $(cell[2]).text().trim() + ' - ' + $(cell[3]).text().trim();
 }
 
+function __extractCells(row){
+	return $(row).children('td');
+}
+
 function extractCellInfo(cell){
 	if(__isBlank(cell)){ return null; }
 
@@ -36,8 +40,10 @@ function extractCellInfo(cell){
 
 function extractRows(table){
 	var rows = [];
+
+	// the first row is excluded, because of irrelevance
 	for(var i = 1; i < table.length; i++){
-		rows.push($(table[i]).children('td'));
+		rows.push(__extractCells(table[i]));
 	}
 	return rows;
 }
@@ -51,7 +57,6 @@ function extractSubject(row){
 		lab:        extractCellInfo($(row[4]).find('td:nth-child(2)'))
 	};
 }
-
 
 function extractTheSchedule(){
 	var table = $('html body form table tbody tr td div table.style1 tbody tr td div table tbody tr[style]');
