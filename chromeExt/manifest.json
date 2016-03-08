@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+
+  "name": "TSU Schedule Organizer",
+  "description": "This extension changes TSU schedule into a more user-friendly one",
+  "version": "1.0",
+
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.google.ge/"],
+      "js": ["jquery-2.2.1.min.js", "script.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
