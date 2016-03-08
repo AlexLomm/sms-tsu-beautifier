@@ -21,8 +21,12 @@ function __extractDay(cell){
 	return $(cell[0]).text().trim();
 }
 
-function __extractTime(cell){
-	return $(cell[2]).text().trim() + ' - ' + $(cell[3]).text().trim();
+function __extractStartTime(cell){
+	return $(cell[2]).text().trim();
+}
+
+function __extractEndTime(cell){
+	return $(cell[3]).text().trim();
 }
 
 // makes an object from the cell
@@ -30,9 +34,10 @@ function extractActivity(cell){
 	if(__isBlank(cell)){ return null; }
 
 	return {
-		address : __extractAddress(cell),
-		day     : __extractDay(cell),
-		time    : __extractTime(cell)
+		address   : __extractAddress(cell),
+		day       : __extractDay(cell),
+		startTime : __extractStartTime(cell),
+		endTime   : __extractEndTime(cell)
 	};
 }
 
@@ -88,5 +93,3 @@ function extractSchedule(){
 }
 
 console.log(extractSchedule());
-
-extractSchedule();
