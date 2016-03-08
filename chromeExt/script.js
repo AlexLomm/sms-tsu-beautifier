@@ -1,3 +1,4 @@
+// TODO: move the code into separate classes
 function __isBlank(cell){
 	var weekDay = $(cell[0]).text().trim();
 
@@ -24,11 +25,8 @@ function __extractTime(cell){
 	return $(cell[2]).text().trim() + ' - ' + $(cell[3]).text().trim();
 }
 
-function __extractCells(row){
-	return $(row).children('td');
-}
-
-function extractCellInfo(cell){
+// makes an object from the cell
+function extractActivity(cell){
 	if(__isBlank(cell)){ return null; }
 
 	return {
@@ -37,6 +35,34 @@ function extractCellInfo(cell){
 		time    : __extractTime(cell)
 	};
 }
+
+
+function __extractCells(row){
+	return $(row).children('td');
+}
+
+function __extractSubjectInfo(row){
+	var subjectInfo = [];
+
+	subjectInfo.push($(row[0]).find('span').text().trim());
+
+	for(var i = 1; i < row.length; i++){
+		subjectInfo.push(extractActivity($(row[i]).find('td:nth-child(2)')));
+	}
+	return subjectInfo;
+}
+
+function extractSubject(row){
+	var subjectInfo = __extractSubjectInfo(row);
+	return {
+		name:       subjectInfo[0],
+		lecture:    subjectInfo[1],
+		work_group: subjectInfo[2],
+		practice:   subjectInfo[3],
+		lab:        subjectInfo[4]
+	};
+}
+
 
 function extractRows(table){
 	var rows = [];
@@ -48,18 +74,10 @@ function extractRows(table){
 	return rows;
 }
 
-function extractSubject(row){
-	return {
-		name:       $(row[0]).find('span').text().trim(),
-		lecture:    extractCellInfo($(row[1]).find('td:nth-child(2)')),
-		work_group: extractCellInfo($(row[2]).find('td:nth-child(2)')),
-		practice:   extractCellInfo($(row[3]).find('td:nth-child(2)')),
-		lab:        extractCellInfo($(row[4]).find('td:nth-child(2)'))
-	};
-}
 
-function extractTheSchedule(){
+function extractSchedule(){
 	var table = $('html body form table tbody tr td div table.style1 tbody tr td div table tbody tr[style]');
+
 	var rows = extractRows(table);
 
 	var schedule = [];
@@ -69,4 +87,6 @@ function extractTheSchedule(){
 	return schedule;
 }
 
-console.log(extractTheSchedule());
+console.log(extractSchedule());
+
+extractSchedule();
