@@ -1,24 +1,38 @@
-function extractCellInfo(cell){
-	if(!$(cell[0]).text().trim() || $(cell[0]).text().trim() === '--------'){ return null; }
+function __isBlank(cell){
+	var weekDay = $(cell[0]).text().trim();
 
-	//subject = $(subject).find('tr:nth-child(2)');
-	//console.log(subject);
-
-	var extractedCell = [];
-	var address = $(cell[1]).children('span').text().split(", ");
-
-	extractedCell['housing']  = address[0].split(':')[1].trim();
-	extractedCell['floor']    = address[1].split(':')[1].trim();
-	extractedCell['auditory'] = address[2].split(':')[1].trim();
-
-	extractedCell['day']      = $(cell[0]).text().trim();
-	extractedCell['time']     = $(cell[2]).text().trim() + ' - ' + $(cell[3]).text().trim();
-
-	//console.log(extractedCell);
-
-	return extractedCell;
+	// if cell კვირის დღე: is blank or equal to dashes, return that the cell is blank
+	return !weekDay || weekDay === '--------';
 }
 
+function __extractAddress(cell){
+	// extract the კორ:XI, სართ:2, აუდიტ:202 type string from the cell and split it
+	var address = $(cell[1]).children('span').text().split(", ");
+
+	return {
+		housing  : address[0].split(':')[1].trim(),
+		floor    : address[1].split(':')[1].trim(),
+		auditory : address[2].split(':')[1].trim()
+	}
+}
+
+function __extractDay(cell){
+	return $(cell[0]).text().trim();
+}
+
+function __extractTime(cell){
+	return $(cell[2]).text().trim() + ' - ' + $(cell[3]).text().trim();
+}
+
+function extractCellInfo(cell){
+	if(__isBlank(cell)){ return null; }
+
+	return {
+		address : __extractAddress(cell),
+		day     : __extractDay(cell),
+		time    : __extractTime(cell)
+	};
+}
 
 function extractRows(table){
 	var rows = [];
