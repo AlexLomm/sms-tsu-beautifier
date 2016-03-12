@@ -49,9 +49,11 @@ function extractAttendanceDetails(cell){
 
 	return {
 		address   : __extractAddress(cell),
-		day       : __extractDay(cell),
-		startTime : __extractStartTime(cell),
-		endTime   : __extractEndTime(cell)
+		time      : {
+			weekDay   : __extractDay(cell),
+			startTime : __extractStartTime(cell),
+			endTime   : __extractEndTime(cell)
+		}
 	};
 }
 
