@@ -1,19 +1,33 @@
+var config = {
+	// paths
+	tablePath: 'html body form table tbody tr td div table.style1 tbody tr td div table tbody tr[style]',
+	rowCellPath: 'td',
+	rowAttendanceDetailsPath: 'td:nth-child(2)',
+	rowSubjectPath: 'span',
+	cellAddressPath: 'span',
+
+	// other
+	addressSeparator: ', ',
+	subAddressesSeparator: ':',
+	blankValue: '--------'
+};
+
 // TODO: move the code into separate classes
 function __isBlank(cell){
 	var weekDay = $(cell[0]).text().trim();
 
-	// if cell კვირის დღე: is blank or equal to dashes, return that the cell is blank
-	return !weekDay || weekDay === '--------';
+	// if the field "კვირის დღე:" is blank or equal to some set of dashes, return that the cell is blank
+	return !weekDay || weekDay === config.blankValue;
 }
 
 function __extractAddress(cell){
-	// extract the კორ:XI, სართ:2, აუდიტ:202 type string from the cell and split it
-	var address = $(cell[1]).children('span').text().split(", ");
+	// extract the "კორ:XI, სართ:2, აუდიტ:202" type string from the cell and split it
+	var address = $(cell[1]).children(config.cellAddressPath).text().split(config.addressSeparator);
 
 	return {
-		housing  : address[0].split(':')[1].trim(),
-		floor    : address[1].split(':')[1].trim(),
-		auditory : address[2].split(':')[1].trim()
+		housing  : address[0].split(config.subAddressesSeparator)[1].trim(),
+		floor    : address[1].split(config.subAddressesSeparator)[1].trim(),
+		auditory : address[2].split(config.subAddressesSeparator)[1].trim()
 	}
 }
 
@@ -30,7 +44,7 @@ function __extractEndTime(cell){
 }
 
 // makes an object from the cell
-function extractActivity(cell){
+function extractAttendanceDetails(cell){
 	if(__isBlank(cell)){ return null; }
 
 	return {
@@ -43,22 +57,25 @@ function extractActivity(cell){
 
 
 function __extractCells(row){
-	return $(row).children('td');
+	return $(row).children(config.rowCellPath);
 }
 
-function __extractSubjectInfo(row){
-	var subjectInfo = [];
+function __extractSubjectData(row){
+	var extractedSubjectData = [];
 
-	subjectInfo.push($(row[0]).find('span').text().trim());
+	var subjectTitle = $(row[0]).find(config.rowSubjectPath).text().trim();
+	extractedSubjectData.push(subjectTitle);
 
+	var attendanceDetails;
 	for(var i = 1; i < row.length; i++){
-		subjectInfo.push(extractActivity($(row[i]).find('td:nth-child(2)')));
+		attendanceDetails = extractAttendanceDetails($(row[i]).find(config.rowAttendanceDetailsPath));
+		extractedSubjectData.push(attendanceDetails);
 	}
-	return subjectInfo;
+	return extractedSubjectData;
 }
 
 function extractSubject(row){
-	var subjectInfo = __extractSubjectInfo(row);
+	var subjectInfo = __extractSubjectData(row);
 	return {
 		name:       subjectInfo[0],
 		lecture:    subjectInfo[1],
@@ -72,7 +89,7 @@ function extractSubject(row){
 function extractRows(table){
 	var rows = [];
 
-	// the first row is excluded, because of irrelevance
+	// the first row is excluded because of irrelevance
 	for(var i = 1; i < table.length; i++){
 		rows.push(__extractCells(table[i]));
 	}
@@ -81,7 +98,7 @@ function extractRows(table){
 
 
 function extractSchedule(){
-	var table = $('html body form table tbody tr td div table.style1 tbody tr td div table tbody tr[style]');
+	var table = $(config.tablePath);
 
 	var rows = extractRows(table);
 
