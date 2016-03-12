@@ -1,0 +1,41 @@
+.nopad-mid{
+  padding: 10px 6px;
+
+}
+
+.nopad{
+  padding: 4px 6px;
+  font-size: 0.8em;
+}
+
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.divider{
+  border-top:1px solid #E5E5E5;
+}
+
+.separator{
+    display:inline-block;
+    padding-right: 5px;
+    border-bottom: 1px solid #E5E5E5;
+    width:20%;
+    text-align: center;
+    border-bottom-right-radius:5px;
+}
+
+ul.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;
+}
+
+.collision{
+    border-right: 3px solid rgba(214, 44, 26, 0.85);
+}
+
+.fix-overflow{
+    overflow: hidden;
+}

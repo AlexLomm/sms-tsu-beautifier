@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "TSU Schedule Organizer",
-  "description": "This extension changes TSU schedule into a more user-friendly one",
+  "name": "SMS Tsu Beautifier",
+  "description": "This extension changes SMS Tsu layout into the more user-friendly one",
   "version": "1.0",
 
   "permissions": [
@@ -11,8 +11,13 @@
   "content_scripts": [
     {
       "matches": ["https://www.google.ge/"],
-      "js": ["jquery-2.2.1.min.js", "script.js"],
+      "js": ["js/jquery-2.2.1.min.js", "js/script.js"],
       "run_at": "document_end"
     }
+  ],
+  "web_accessible_resources": [
+    "templates/*",
+    "css/*",
+    "js/*"
   ]
 }
