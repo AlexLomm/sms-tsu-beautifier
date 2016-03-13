@@ -1,114 +1,173 @@
 var ScheduleParser = {
-	config: {
-		// paths
-		tablePath: 'html body form table tbody tr td div table.style1 tbody tr td div table tbody tr[style]',
-		rowCellPath: 'td',
-		rowAttendanceDetailsPath: 'td:nth-child(2)',
-		rowSubjectPath: 'span',
-		cellAddressPath: 'span',
+	///////////////////////// LEGEND //////////////////////////
+	// TABLE    - the table itself, where raw rows are stored
+	// SCHEDULE - just a set of ALL activities
+    //
+	// ROW      - table row, where raw subject is stored
+	// SUBJECT  - just a set of activities
+    //
+	// CELL     - table cell, where raw activity is stored
+	// ACTIVITY - (object) lecture, practice, etc
+	///////////////////////////////////////////////////////////
 
-		// other
-		addressSeparator: ', ',
-		subAddressesSeparator: ':',
-		blankValue: '--------'
-	},
+    config: {
+        // paths
+        tablePath: 'html body form table tbody tr td div table.style1 tbody tr td div table tbody tr[style]',
+        rowCellPath: 'td',
+        rowAttendanceDetailsPath: 'td:nth-child(2)',
+        rowSubjectPath: 'span',
+        cellAddressPath: 'span',
 
-	__isBlank: function(cell) {
-		var weekDay = $(cell[0]).text().trim();
+        // other
+        addressSeparator: ', ',
+        subAddressesSeparator: ':',
+        blankValue: '--------'
+    },
 
-		// if the field "კვირის დღე:" is blank or equal to some set of dashes, return that the cell is blank
-		return !weekDay || weekDay === this.config.blankValue;
-	},
+    __isBlank: function(cell) {
+        var weekDay = $(cell[0]).text().trim();
 
-	__extractAddress: function(cell) {
-		// extract the "კორ:XI, სართ:2, აუდიტ:202" type string from the cell and split it
-		var address = $(cell[1]).children(this.config.cellAddressPath).text().split(this.config.addressSeparator);
+        // if the field "კვირის დღე:" is blank or equal to some set of dashes, return that the cell is blank
+        return !weekDay || weekDay === this.config.blankValue;
+    },
 
-		return {
-			housing: address[0].split(this.config.subAddressesSeparator)[1].trim(),
-			floor: address[1].split(this.config.subAddressesSeparator)[1].trim(),
-			auditory: address[2].split(this.config.subAddressesSeparator)[1].trim()
-		}
-	},
+    __extractAddress: function(cell) {
+        // extract the "კორ:XI, სართ:2, აუდიტ:202" type string from the cell and split it
+        var address = $(cell[1]).children(this.config.cellAddressPath).text().split(this.config.addressSeparator);
 
-	__extractDay: function(cell) {
-		return $(cell[0]).text().trim();
-	},
+        return {
+            housing:  address[0].split(this.config.subAddressesSeparator)[1].trim(),
+            floor:    address[1].split(this.config.subAddressesSeparator)[1].trim(),
+            auditory: address[2].split(this.config.subAddressesSeparator)[1].trim()
+        }
+    },
 
-	__extractStartTime: function(cell) {
-		return $(cell[2]).text().trim();
-	},
+    __extractDay: function(cell) {
+        return $(cell[0]).text().trim();
+    },
 
-	__extractEndTime: function (cell) {
-		return $(cell[3]).text().trim();
-	},
+    __extractStartTime: function(cell) {
+        return $(cell[2]).text().trim();
+    },
 
-	// makes an object from the cell
-	extractAttendanceDetails: function (cell) {
-		if (this.__isBlank(cell)) {
-			return null;
-		}
+    __extractEndTime: function(cell) {
+        return $(cell[3]).text().trim();
+    },
 
-		return {
-			address: this.__extractAddress(cell),
-			time: {
-				weekDay: this.__extractDay(cell),
-				startTime: this.__extractStartTime(cell),
-				endTime: this.__extractEndTime(cell)
-			}
-		};
-	},
+    __cellHasCollision: function(cell){
+        return $(cell[0]).parent().closest('td').attr('style') === 'background-color:Red;';
+    },
 
-	__extractCells: function(row) {
-		return $(row).children(this.config.rowCellPath);
-	},
+    // makes an object from the cell
+    produceActivity: function(cell, subjectName, activityType) {
+        if (this.__isBlank(cell)) {
+            return null;
+        }
 
-	__extractSubjectData: function(row) {
-		var extractedSubjectData = [];
+	    // construct an activity and return it
+        return {
+	        name: subjectName,
+	        type: activityType,
+            collides: this.__cellHasCollision(cell),
+            address: this.__extractAddress(cell),
+            time: {
+                weekDay: this.__extractDay(cell),
+                startTime: this.__extractStartTime(cell),
+                endTime: this.__extractEndTime(cell)
+            }
+        };
+    },
 
-		var subjectTitle = $(row[0]).find(this.config.rowSubjectPath).text().trim();
-		extractedSubjectData.push(subjectTitle);
 
-		var attendanceDetails;
-		for (var i = 1; i < row.length; i++) {
-			attendanceDetails = this.extractAttendanceDetails($(row[i]).find(this.config.rowAttendanceDetailsPath));
-			extractedSubjectData.push(attendanceDetails);
-		}
-		return extractedSubjectData;
-	},
+    __extractCells: function(row) {
+        return $(row).children(this.config.rowCellPath);
+    },
 
-	extractSubject: function(row) {
-		var subjectInfo = this.__extractSubjectData(row);
-		return {
-			name: subjectInfo[0],
-			lecture: subjectInfo[1],
-			work_group: subjectInfo[2],
-			practice: subjectInfo[3],
-			lab: subjectInfo[4]
-		};
-	},
+    __extractSubjectName: function(row){
+        return $(row[0]).find(this.config.rowSubjectPath).text().trim();
+    },
 
-	extractRows: function(table) {
-		var rows = [];
 
-		// the first row is excluded because of irrelevance
-		for (var i = 1; i < table.length; i++) {
-			rows.push(this.__extractCells(table[i]));
-		}
-		return rows;
-	},
+	// TODO: code smell!
+	//   function guesses the type of the activity,
+	// judging by the cell's column position in the table
+    __guessType: function(cellColumnNumber){
+        switch(cellColumnNumber){
+            case 1: return 'ლექცია';
+            case 2: return 'სამუშაო ჯგუფი';
+            case 3: return 'პრაქტიკული';
+            case 4: return 'ლაბორატორიული';
+        }
+        // if null is returned, something went wrong
+        return null;
+    },
 
-	extractSchedule: function() {
-		var table = $(this.config.tablePath);
+	// TODO: code smell!
+    produceSubject: function(row) {
+        var activities = [];
 
-		var rows = this.extractRows(table);
+        var subjectName = this.__extractSubjectName(row);
+        //activities.push(subjectName);
 
-		var schedule = [];
-		for (var i = 0; i < rows.length; i++) {
-			schedule.push(this.extractSubject(rows[i]));
-		}
-		return schedule;
-	}
+	    // produce activity and push it into the activities pool
+        var activity;
+        for (var i = 1; i < row.length; i++) {
+	        activity = this.produceActivity(
+		        $(row[i]).find(this.config.rowAttendanceDetailsPath), // cell
+		        subjectName,                                          // subjectName
+		        this.__guessType(i)                                   // activityType
+	        );
+
+            if(activity){
+                activities.push(activity);
+            }
+        }
+        return activities;
+    },
+
+    __extractRows: function(table) {
+        var rows = [];
+
+        // the first row is excluded because of irrelevance
+        for (var i = 1; i < table.length; i++) {
+            rows.push(this.__extractCells(table[i]));
+        }
+        return rows;
+    },
+
+
+	// predicate helper
+    __convertStartTimeToInt: function(subject){
+        var hours   = parseInt(subject.time.startTime.split(':')[0].trim(), 10);
+        var minutes = parseInt(subject.time.startTime.split(':')[1].trim(), 10);
+
+        return hours * 60 + minutes;
+    },
+
+	// predicate for sorting subjects
+    __compare: function(subjectA, subjectB){
+        var aStartTime = ScheduleParser.__convertStartTimeToInt(subjectA);
+        var bStartTime = ScheduleParser.__convertStartTimeToInt(subjectB);
+
+        if (aStartTime < bStartTime)
+            return -1;
+        else if (aStartTime > bStartTime)
+            return 1;
+        else
+            return 0;
+    },
+
+    produceSchedule: function() {
+        var table = $(this.config.tablePath);
+
+        var rows = this.__extractRows(table);
+
+        var schedule = [];
+        for (var i = 0; i < rows.length; i++) {
+            schedule = $.merge(schedule, this.produceSubject(rows[i]));
+        }
+        return schedule.sort(this.__compare);
+    }
 };
 
-console.log(ScheduleParser.extractSchedule());
+//console.log(ScheduleParser.produceSchedule());

@@ -44,7 +44,7 @@ var ScheduleParser = {
 	},
 
 	// makes an object from the cell
-	extractAttendanceDetails: function (cell) {
+	produceActivity: function (cell) {
 		if (this.__isBlank(cell)) {
 			return null;
 		}
@@ -63,7 +63,7 @@ var ScheduleParser = {
 		return $(row).children(this.config.rowCellPath);
 	},
 
-	__extractSubjectData: function(row) {
+	produceSubject: function(row) {
 		var extractedSubjectData = [];
 
 		var subjectTitle = $(row[0]).find(this.config.rowSubjectPath).text().trim();
@@ -71,14 +71,14 @@ var ScheduleParser = {
 
 		var attendanceDetails;
 		for (var i = 1; i < row.length; i++) {
-			attendanceDetails = this.extractAttendanceDetails($(row[i]).find(this.config.rowAttendanceDetailsPath));
+			attendanceDetails = this.produceActivity($(row[i]).find(this.config.rowAttendanceDetailsPath));
 			extractedSubjectData.push(attendanceDetails);
 		}
 		return extractedSubjectData;
 	},
 
-	extractSubject: function(row) {
-		var subjectInfo = this.__extractSubjectData(row);
+	produceSubject: function(row) {
+		var subjectInfo = this.produceSubject(row);
 		return {
 			name: subjectInfo[0],
 			lecture: subjectInfo[1],
@@ -88,7 +88,7 @@ var ScheduleParser = {
 		};
 	},
 
-	extractRows: function(table) {
+	__extractRows: function(table) {
 		var rows = [];
 
 		// the first row is excluded because of irrelevance
@@ -98,17 +98,17 @@ var ScheduleParser = {
 		return rows;
 	},
 
-	extractSchedule: function() {
+	produceSchedule: function() {
 		var table = $(this.config.tablePath);
 
-		var rows = this.extractRows(table);
+		var rows = this.__extractRows(table);
 
 		var schedule = [];
 		for (var i = 0; i < rows.length; i++) {
-			schedule.push(this.extractSubject(rows[i]));
+			schedule.push(this.produceSubject(rows[i]));
 		}
 		return schedule;
 	}
 };
 
-//console.log(ScheduleParser.extractSchedule());
+//console.log(ScheduleParser.produceSchedule());
