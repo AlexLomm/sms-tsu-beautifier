@@ -10,14 +10,15 @@
   ],
   "content_scripts": [
     {
-      "matches": ["https://www.google.ge/"],
-      "js": ["js/jquery-2.2.1.min.js", "js/script.js"],
+      "matches": ["http://sms.tsu.ge/sms/Students/Cxrilebi.aspx"],
+      "js": ["js/jquery-2.2.1.min.js", "js/scheduleParser.js", "js/schedule_page.js"],
       "run_at": "document_end"
     }
   ],
   "web_accessible_resources": [
     "templates/*",
     "css/*",
-    "js/*"
+    "js/*",
+    "html/*"
   ]
 }
