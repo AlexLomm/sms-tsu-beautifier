@@ -11,7 +11,7 @@
   "content_scripts": [
     {
       "matches": ["http://sms.tsu.ge/sms/Students/Cxrilebi.aspx"],
-      "js": ["js/jquery-2.2.1.min.js", "js/scheduleParser.js", "js/schedule_page.js"],
+      "js": ["js/jquery-2.2.1.min.js", "js/scheduleParser.js", "js/schedulePage.js"],
       "run_at": "document_end"
     }
   ],
