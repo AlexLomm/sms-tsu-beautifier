@@ -6,7 +6,7 @@ var paths = {
 
 	panelAddressSection:     '.panel-heading span',
 	panelNameSection:        '.panel-body',
-	panelTimeAndTypeSection: '.divider span',
+	panelTimeAndTypeSection: '.upper-divider span',
 	panelCollisionSection:   '.panel-default'
 };
 

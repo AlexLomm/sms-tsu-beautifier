@@ -3,16 +3,20 @@
 	<title>Sms.tsu Beautifier</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="../css/bootstrap/css/united.min.css">
-	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="css/bootstrap/css/united.min.css" data-theme="main">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/united.css" data-theme="secondary">
 	<script>
 		// TODO: refactor
 		// changes css paths to match the extension ones
-		var links = $('link');
+		chrome.storage.sync.get('theme', function(data) {
+			if(!data){ data.theme = 'flatly' }
 
-		for(var i = 0; i < links.length; i++){
-			$(links[i]).attr('href', chrome.extension.getURL('/') + $(links[i]).attr('href'));
-		}
+			$($('link')[1]).attr('href', chrome.extension.getURL('/') + 'css/style.css');
+
+			$('link[data-theme="main"]').attr('href', chrome.extension.getURL('/') + 'css/bootstrap/css/' + data.theme + '.min.css');
+			$('link[data-theme="secondary"]').attr('href', chrome.extension.getURL('/') + 'css/' + data.theme + '.css');
+		});
 	</script>
 </div>
 
@@ -28,8 +32,8 @@
 			</div>
 			<ul class="nav navbar-nav">
 				<li><a href="StudAnk.aspx">ანკეტა</a></li>
-				<li><a href="Cxrilebi.aspx">ცხრილი</a></li>
-				<li><a href="http://sms.tsu.ge/sms/Students/Corespondencia/FakultMimowera.aspx">წერილები </a></li>
+				<li class="active"><a href="Cxrilebi.aspx">ცხრილი</a></li>
+				<li><a href="http://sms.tsu.ge/sms/Students/Corespondencia/FakultMimowera.aspx">წერილები <span class="badge">3</span></a></li>
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">სხვა <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="StudIndCxrili.aspx">ინდივიდუალური ცხრილი</a></li>
@@ -43,14 +47,32 @@
 
 			<!-- right side of the navbar -->
 			<ul class="nav navbar-nav navbar-right">
+
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;პროფილი <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="Orders.aspx">ინდ. ადმინისტ. - სამართლებრივი აქტები</a></li>
 						<li><a href="ProfileEdit/ChangePassword.aspx">პაროლის შეცვლა</a></li>
 						<li><a href="Information/Financial.aspx">გადახდები</a></li>
+						<li class="divider"></li>
+						<li><a id="ctl00_LinkButton1" href="javascript:__doPostBack('ctl00$LinkButton1','')">გამოსვლა</a></li>
 					</ul>
 				</li>
-				<li><a id="ctl00_LinkButton1" href="javascript:__doPostBack('ctl00$LinkButton1','')"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;გამოსვლა</a></li>
+
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-cog"></span></a>
+					<ul class="dropdown-menu">
+						<li>
+							<div class="theme-selectors">
+								<div>
+									<a href="#"><span class="icon-square theme-selector-flatly" data-value="flatly"></span></a>
+									<a href="#"><span class="icon-square theme-selector-sandstone" data-value="sandstone"></span></a>
+									<a href="#"><span class="icon-square theme-selector-slate" data-value="slate"></span></a>
+									<a href="#"><span class="icon-square theme-selector-united theme-selected" data-value="united"></span></a>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</li>
+
 			</ul>
 		</div>
 	</nav>
@@ -75,7 +97,7 @@
 								<span class="separator"> </span>
 							</div>
 							<div class="panel-body nopad-mid truncate"> </div>
-							<div class="nopad divider fix-overflow">
+							<div class="nopad upper-divider fix-overflow">
 								<span class="pull-left"> </span>
 								<span class="pull-right"> </span>
 							</div>
@@ -100,7 +122,7 @@
 								<span class="separator"> </span>
 							</div>
 							<div class="panel-body nopad-mid truncate"> </div>
-							<div class="nopad divider fix-overflow">
+							<div class="nopad upper-divider fix-overflow">
 								<span class="pull-left"> </span>
 								<span class="pull-right"> </span>
 							</div>
@@ -125,7 +147,7 @@
 								<span class="separator"> </span>
 							</div>
 							<div class="panel-body nopad-mid truncate"> </div>
-							<div class="nopad divider fix-overflow">
+							<div class="nopad upper-divider fix-overflow">
 								<span class="pull-left"> </span>
 								<span class="pull-right"> </span>
 							</div>
@@ -150,7 +172,7 @@
 								<span class="separator"> </span>
 							</div>
 							<div class="panel-body nopad-mid truncate"> </div>
-							<div class="nopad divider fix-overflow">
+							<div class="nopad upper-divider fix-overflow">
 								<span class="pull-left"> </span>
 								<span class="pull-right"> </span>
 							</div>
@@ -175,7 +197,7 @@
 								<span class="separator"> </span>
 							</div>
 							<div class="panel-body nopad-mid truncate"> </div>
-							<div class="nopad divider fix-overflow">
+							<div class="nopad upper-divider fix-overflow">
 								<span class="pull-left"> </span>
 								<span class="pull-right"> </span>
 							</div>
@@ -200,7 +222,7 @@
 								<span class="separator"> </span>
 							</div>
 							<div class="panel-body nopad-mid truncate"> </div>
-							<div class="nopad divider fix-overflow">
+							<div class="nopad upper-divider fix-overflow">
 								<span class="pull-left"> </span>
 								<span class="pull-right"> </span>
 							</div>
@@ -215,5 +237,14 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="../js/jquery-2.2.1.min.js"></script>
 	<script src="../js/3.3.6_bootstrap.min.js"></script>
+
+	<script>
+		// TODO: extract code
+		$('div.theme-selectors > div').on('click', 'span', function(){
+			chrome.storage.sync.set({
+				'theme': $(this).data('value')
+			});
+		});
+	</script>
 </div>
 
