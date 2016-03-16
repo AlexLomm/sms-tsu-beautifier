@@ -7,7 +7,7 @@
 	  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
     <link rel="stylesheet" href="css/bootstrap/css/united.min.css" data-theme="main">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/united.css" data-theme="secondary">
+    <link rel="stylesheet" href="css/themes/united.css" data-theme="secondary">
   </head>
   <body>
 
@@ -15,9 +15,9 @@
     <nav class="navbar navbar-default">
       <div class="container">
         <!-- left side of the navbar -->
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Sms.tsu</a>
-        </div>
+        <!--<div class="navbar-header">-->
+          <!--<a class="navbar-brand" href="#">Sms.tsu</a>-->
+        <!--</div>-->
         <ul class="nav navbar-nav">
           <li><a href="StudAnk.aspx">ანკეტა</a></li>
           <li class="active"><a href="Cxrilebi.aspx">ცხრილი</a></li>
@@ -50,7 +50,7 @@
             <ul class="dropdown-menu">
               <li>
                 <div class="theme-selectors">
-	                <div>
+	                <div class="custom-dropdown-item">
 		                <a href="#"><span class="icon-square theme-selector-flatly" data-value="flatly"></span></a>
 		                <a href="#"><span class="icon-square theme-selector-sandstone" data-value="sandstone"></span></a>
 		                <a href="#"><span class="icon-square theme-selector-slate" data-value="slate"></span></a>
@@ -58,6 +58,16 @@
 	                </div>
                 </div>
               </li>
+	            <li class="divider"></li>
+	            <li>
+		            <div class="custom-dropdown-item fun-mode">
+			            <label class="fun-toggle-label">Troll?</label>
+			            <div class="pull-right">
+				            <input class='tgl tgl-light' id='cb1' type='checkbox'>
+				            <label class='tgl-btn' for='cb1'></label>
+			            </div>
+		            </div>
+	            </li>
             </ul>
           </li>
 
@@ -134,7 +144,7 @@
 
 	          <!-- TODO: trolface location -->
             <div class="col-xs-12" style="margin-top:-20px;">
-              <img src="img/l_trollface_55x18.png" alt="trollface">
+              <img src="img/peekingTrollface.png" alt="trollface">
               <div class="panel panel-default collision">
                 <!-- Default panel contents -->
                 <div class="panel-heading nopad">
@@ -207,17 +217,19 @@
           </span>
           <div class="row">
             <div class="col-xs-12 crazy">
-              <div class="panel panel-default">
-                <!-- Default panel contents -->
-                <div class="panel-heading nopad">
-                  <span class="separator invis"></span>
-                  <span class="separator invis"></span>
-                  <span class="separator invis"></span>
-                </div>
-                <div class="panel-body nopad-mid truncate">
-	                <img src="img/deadface.png" alt="forever-alone" class="img-responsive">
-                </div>
-              </div>
+              <!--<div class="panel panel-default">-->
+                <!--&lt;!&ndash; Default panel contents &ndash;&gt;-->
+                <!--<div class="panel-heading nopad">-->
+                  <!--<span class="separator invis"></span>-->
+                  <!--<span class="separator invis"></span>-->
+                  <!--<span class="separator invis"></span>-->
+                <!--</div>-->
+                <!--<div class="panel-body nopad-mid truncate">-->
+	                <!--<img src="img/foreverAlone.png" alt="forever-alone" class="img-responsive">-->
+                <!--</div>-->
+              <!--</div>-->
+	            <img src="img/foreverAlone.png" alt="forever-alone" class="img-responsive">
+
             </div>
           </div>
         </div> <!-- END OF COLUMN -->
@@ -339,7 +351,7 @@
 						      <span class="separator invis"></span>
 					      </div>
 					      <div class="panel-body nopad-mid truncate">
-						      <img src="img/deadface.png" alt="forever-alone" class="img-responsive">
+						      <img src="img/deadFace.png" alt="forever-alone" class="img-responsive">
 					      </div>
 				      </div>
 			      </div>
@@ -360,7 +372,7 @@
 	      // TODO: extract code
 			  $('div.theme-selectors > div').on('click', 'span', function(){
 					  $('link[data-theme="main"]').attr('href', 'css/bootstrap/css/' + $(this).data('value') + '.min.css');
-					  $('link[data-theme="secondary"]').attr('href', 'css/' + $(this).data('value') + '.css');
+					  $('link[data-theme="secondary"]').attr('href', 'css/themes/' + $(this).data('value') + '.css');
 			  });
 	  </script>
   </body>

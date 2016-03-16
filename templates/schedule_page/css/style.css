@@ -11,6 +11,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+	font-size: 0.8em;
 }
 
 .upper-divider{
@@ -19,8 +20,7 @@
 
 .separator{
     display:inline-block;
-    /*padding-right: 5px;*/
-    width:15%;
+    width:14%;
     text-align: center;
     border-bottom: 1px solid lightgrey;
     border-bottom-right-radius:4px;
@@ -78,9 +78,16 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 div.theme-selectors > div{
 	display: flex;
 	justify-content: space-between;
-	/*padding:3px 20px 7px 20px;*/
+}
+
+.custom-dropdown-item{
 	padding:0 20px;
-	/*border-bottom:1px solid lightgrey;*/
+	font-size: 13px;
+}
+
+.fun-toggle-label{
+	display:inline-block;
+	padding-top:2px;
 }
 
 div.theme-selectors > div > a{
@@ -117,6 +124,66 @@ span.theme-selected{
 	opacity:1;
 }
 
+/* fun mode toggle button */
+.tgl {
+	display: none;
+}
+.tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl + .tgl-btn {
+	box-sizing: border-box;
+}
+.tgl::-moz-selection, .tgl:after::-moz-selection, .tgl:before::-moz-selection, .tgl *::-moz-selection, .tgl *:after::-moz-selection, .tgl *:before::-moz-selection, .tgl + .tgl-btn::-moz-selection {
+	background: none;
+}
+.tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl + .tgl-btn::selection {
+	background: none;
+}
+.tgl + .tgl-btn {
+	outline: 0;
+	display: block;
+	width: 4em;
+	height: 2em;
+	position: relative;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
+	position: relative;
+	display: block;
+	content: "";
+	width: 50%;
+	height: 100%;
+}
+.tgl + .tgl-btn:after {
+	left: 0;
+}
+.tgl + .tgl-btn:before {
+	display: none;
+}
+.tgl:checked + .tgl-btn:after {
+	left: 50%;
+}
+
+.tgl-light + .tgl-btn {
+	background:#e1e1e1;
+	border-radius: 2em;
+	padding: 2px;
+	-webkit-transition: all .4s ease;
+	transition: all .4s ease;
+}
+.tgl-light + .tgl-btn:after {
+	border-radius: 50%;
+	background:#ffffff;
+	-webkit-transition: all .2s ease;
+	transition: all .2s ease;
+}
+.tgl-light:checked + .tgl-btn {
+	background: #9FD6AE;
+}
+
+
 /* define common options for all themes */
 .navbar .nav > li > a{
 	font-size:14px;
@@ -131,8 +198,22 @@ h4{
 }
 
 .crazy{
-	transform: rotate(7deg) ;
+	transform: rotate(7deg);
 }
+
+/* removes the space that was left after navbar-header removal */
+.nav.navbar-nav > li:first-child{
+	margin-left:-15px;
+}
+
+
+
+
+
+
+
+
+
 
 /* DISABLE RESPONSIVITY */
 @media (max-width: 992px) {

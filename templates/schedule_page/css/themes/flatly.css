@@ -4,4 +4,9 @@
 
 .separator{
 	border-bottom:1px solid #dbdedf;
+	width:15%;
+}
+
+.fun-toggle-label{
+	padding-top:3px;
 }
