@@ -1,8 +1,8 @@
 var paths = {
 	shedulePageHtml: 'html/schedulePage.html',
 
-	oldMessagesAnchor:       'html body form#aspnetForm table tbody tr td span#ctl00_Label2 a',
-	newMessagesAnchor:       '#body > nav > div > ul:nth-child(2) > li:nth-child(3) > a',
+	oldHtmlMessagesAnchor:   'html body form#aspnetForm table tbody tr td span#ctl00_Label2 a',
+	newHtmlMessagesAnchor:   'body > nav > div > ul:nth-child(1) > li:nth-child(3) > a',
 
 	panelAddressSection:     '.panel-heading span',
 	panelNameSection:        '.panel-body',
@@ -12,7 +12,7 @@ var paths = {
 
 
 function __extractIncomingMessagesCount(){
-    var messagesLinkTag = $(paths.oldMessagesAnchor);
+    var messagesLinkTag = $(paths.oldHtmlMessagesAnchor);
 
 	// if there are no messages return null
     if(!messagesLinkTag.length){

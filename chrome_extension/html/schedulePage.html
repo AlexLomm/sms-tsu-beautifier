@@ -2,38 +2,25 @@
 <div id="head">
 	<title>Sms.tsu Beautifier</title>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
 	<link rel="stylesheet" href="css/bootstrap/css/united.min.css" data-theme="main">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/united.css" data-theme="secondary">
-	<script>
-		// TODO: refactor
-		// changes css paths to match the extension ones
-		chrome.storage.sync.get('theme', function(data) {
-			if(!data){ data.theme = 'flatly' }
-
-			$($('link')[1]).attr('href', chrome.extension.getURL('/') + 'css/style.css');
-
-			$('link[data-theme="main"]').attr('href', chrome.extension.getURL('/') + 'css/bootstrap/css/' + data.theme + '.min.css');
-			$('link[data-theme="secondary"]').attr('href', chrome.extension.getURL('/') + 'css/' + data.theme + '.css');
-		});
-	</script>
 </div>
 
 
 
 <div id="body">
-	<!-- navbar -->
 	<nav class="navbar navbar-default">
 		<div class="container">
 			<!-- left side of the navbar -->
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Sms.tsu</a>
-			</div>
+			<!--<div class="navbar-header">-->
+			<!--<a class="navbar-brand" href="#">Sms.tsu</a>-->
+			<!--</div>-->
 			<ul class="nav navbar-nav">
 				<li><a href="StudAnk.aspx">ანკეტა</a></li>
 				<li class="active"><a href="Cxrilebi.aspx">ცხრილი</a></li>
-				<li><a href="http://sms.tsu.ge/sms/Students/Corespondencia/FakultMimowera.aspx">წერილები <span class="badge">3</span></a></li>
+				<li><a href="http://sms.tsu.ge/sms/Students/Corespondencia/FakultMimowera.aspx">წერილები </a></li>
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">სხვა <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="StudIndCxrili.aspx">ინდივიდუალური ცხრილი</a></li>
@@ -62,11 +49,21 @@
 					<ul class="dropdown-menu">
 						<li>
 							<div class="theme-selectors">
-								<div>
+								<div class="custom-dropdown-item">
 									<a href="#"><span class="icon-square theme-selector-flatly" data-value="flatly"></span></a>
 									<a href="#"><span class="icon-square theme-selector-sandstone" data-value="sandstone"></span></a>
 									<a href="#"><span class="icon-square theme-selector-slate" data-value="slate"></span></a>
-									<a href="#"><span class="icon-square theme-selector-united theme-selected" data-value="united"></span></a>
+									<a href="#"><span class="icon-square theme-selector-united" data-value="united"></span></a>
+								</div>
+							</div>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<div class="custom-dropdown-item fun-mode">
+								<label class="fun-toggle-label">Troll?</label>
+								<div class="pull-right">
+									<input class='tgl tgl-light' id='cb1' type='checkbox'>
+									<label class='tgl-btn' for='cb1'></label>
 								</div>
 							</div>
 						</li>
@@ -239,11 +236,64 @@
 	<script src="../js/3.3.6_bootstrap.min.js"></script>
 
 	<script>
-		// TODO: extract code
-		$('div.theme-selectors > div').on('click', 'span', function(){
+		// TODO: refactor
+		// changes css paths to match the extension ones
+		var themes = {
+			availableThemes: ['flatly', 'sandstone', 'slate', 'united'],
+			defaultTheme: 'flatly'
+		};
+		var selectedTheme = themes.defaultTheme;
+		var prefix = chrome.extension.getURL('/');
+
+		function __selectedThemeIsCorrect(selectedTheme){
+			for (var i = 0; i < themes.availableThemes.length; i++) {
+				if(themes.availableThemes[i] === selectedTheme) {
+					return true;
+				}
+			}
+			chrome.storage.sync.set({'theme': themes.defaultTheme});
+			return false;
+		}
+
+		function __highlightSelectedTheme(selectedTheme){
+			$('div.custom-dropdown-item span[data-value="' + selectedTheme + '"]').addClass('theme-selected');
+		}
+
+		chrome.storage.sync.get('theme', function(data) {
+			selectedTheme = themes.defaultTheme;
+			if(data && data.theme && __selectedThemeIsCorrect(data.theme)){
+				selectedTheme = data.theme;
+			}
+
+			$($('link')[1]).attr('href', prefix + 'css/style.css');
+			$('link[data-theme="main"]').attr('href', prefix + 'css/bootstrap/css/' + selectedTheme + '.min.css');
+			$('link[data-theme="secondary"]').attr('href', prefix + 'css/themes/' + selectedTheme + '.css');
+
+			__highlightSelectedTheme(selectedTheme);
+		});
+	</script>
+
+	<script>
+		$('div.fun-mode').on('click', 'input', function(){
 			chrome.storage.sync.set({
-				'theme': $(this).data('value')
+				'funMode': $(this).prop('checked')
 			});
+		});
+
+		// changes the theme dynamically when the button is clicked
+		$('div.theme-selectors > div').on('click', 'span', function(){
+			if(!$(this).hasClass('theme-selected')){
+				$('link[data-theme="main"]').attr('href', prefix + 'css/bootstrap/css/' + $(this).data('value') + '.min.css');
+				$('link[data-theme="secondary"]').attr('href', prefix + 'css/themes/' + $(this).data('value') + '.css');
+
+				$('div.theme-selectors > div span.theme-selected').removeClass('theme-selected');
+
+				$('div.custom-dropdown-item span[data-value="' + $(this).data('value') + '"]').addClass('theme-selected');
+
+				chrome.storage.sync.set({
+					'theme': $(this).data('value')
+				});
+			}
 		});
 	</script>
 </div>
