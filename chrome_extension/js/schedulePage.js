@@ -1,5 +1,6 @@
 var paths = {
-	shedulePageHtml: 'html/schedulePage.html',
+	shedulePageHtml: 'html/schedule_page.html',
+	placeholdersHtml: 'html/schedule_page_placeholders.html',
 
 	oldHtmlMessagesAnchor:   'html body form#aspnetForm table tbody tr td span#ctl00_Label2 a',
 	newHtmlMessagesAnchor:   'body > nav > div > ul:nth-child(1) > li:nth-child(3) > a',
@@ -8,6 +9,23 @@ var paths = {
 	panelNameSection:        '.panel-body',
 	panelTimeAndTypeSection: '.upper-divider span',
 	panelCollisionSection:   '.panel-default'
+};
+
+var allWeekdays = ['ორშაბათი', 'სამშაბათი', 'ოთხშაბათი', 'ხუთშაბათი', 'პარასკევი', 'შაბათი'];
+
+var memes = {
+	trollFace: 'img/peekingTrollface.png',
+	memePlaceholders: [
+		'img/foreverAlone.png',
+		'img/freddie.png',
+		'img/fuckYeah.png',
+		'img/lolGuy.png',
+		'img/meGusta.png',
+		'img/obama.png',
+		'img/ohGodWhy.png',
+		'img/slyMan.png',
+		'img/yaoMing.png'
+	]
 };
 
 
@@ -78,12 +96,16 @@ function populateWeekdayColumn(activityDiv, weekdayActivities){
 }
 
 
+function __extractElementFromImportedHtml(elementSelector, importedHtml){
+	return $(elementSelector, $(importedHtml));
+}
+
 function __extractHead(importedHtml){
-	return $.parseHTML(importedHtml, true)[1].innerHTML;
+	return __extractElementFromImportedHtml('#head', importedHtml)[0].innerHTML;
 }
 
 function __extractBody(importedHtml){
-	return $.parseHTML(importedHtml, true)[3].innerHTML;
+	return __extractElementFromImportedHtml('#body', importedHtml)[0].innerHTML;
 }
 
 function overwriteCurrentLayout(importedHtml){
@@ -108,22 +130,91 @@ function __groupActivitiesByWeekDays(scheduleData){
 	return activitiesByWeekdays;
 }
 
+function __extractLastActivityFromH4(weekday){
+	return $('h4:contains(' + weekday + ')').parent().siblings(":last");
+}
+
 function displaySchedule(activitiesByWeekdays){
 	var weekdays = Object.keys(activitiesByWeekdays);
 
 	for(var i = 0; i < weekdays.length; i++){
-		var activityDiv = $('h4:contains(' + weekdays[i] + ')').parent().siblings(":last");
+		var activityDiv = __extractLastActivityFromH4(weekdays[i]);
 		populateWeekdayColumn(activityDiv, activitiesByWeekdays[weekdays[i]]);
 	}
 }
 
 
+function __chooseRandomFunnyPlaceholder(usedIndexes, unusedDaysCount){
+	var memesCount = memes.memePlaceholders.length;
+	var chooseUniqueIndexes = true;
+
+	if(memesCount < unusedDaysCount){ chooseUniqueIndexes = false }
+
+	var randomIndex = Math.floor(Math.random() * memesCount);
+	if(chooseUniqueIndexes) {
+		while($.inArray(randomIndex, usedIndexes) !== -1){
+			randomIndex = (randomIndex + 1) % memesCount;
+		}
+		usedIndexes.push(randomIndex);
+	}
+	return memes.memePlaceholders[randomIndex];
+}
+
+function __randomizeFunnyPlaceholder(lastActivity, funnyPlaceholder, memeUrl){
+	$(funnyPlaceholder).find('img').attr('src', memeUrl);
+	$(lastActivity).replaceWith(funnyPlaceholder);
+}
+
+function __replaceWithFunnyPlaceholders(unusedWeekDays, importedPlaceholders){
+	var funnyPlaceholder = __extractElementFromImportedHtml('#placeholder-fun > div', importedPlaceholders);
+	var usedIndexes = [];
+
+	for (var i = 0; i < unusedWeekDays.length; i++) {
+		var lastActivity = __extractLastActivityFromH4(unusedWeekDays[i]);
+		__randomizeFunnyPlaceholder(lastActivity, funnyPlaceholder,  __chooseRandomFunnyPlaceholder(usedIndexes, unusedWeekDays.length));
+	}
+}
+
+function __replaceWithRegularPlaceholders(unusedWeekDays, importedPlaceholders){
+	var regularPlaceholder = __extractElementFromImportedHtml('#placeholder-regular > div', importedPlaceholders);
+
+	for (var i = 0; i < unusedWeekDays.length; i++) {
+		var lastActivity = __extractLastActivityFromH4(unusedWeekDays[i]);
+		lastActivity.replaceWith(regularPlaceholder);
+	}
+}
+
+function __findOutUnusedWeekdays(activitiesGroupedByWeekdays){
+	var usedWeekdays = Object.keys(activitiesGroupedByWeekdays);
+
+	// unused week days will be those days which are not used
+	// in activitiesGroupedByWeekdays as keys (Smartass logic ;))
+	return $(allWeekdays).not(usedWeekdays).get();
+}
+
+function addPlaceholders(unusedWeekdays){
+	chrome.storage.sync.get('funMode', function(data) {
+		data.funMode = !!data.funMode;
+
+		$.get(chrome.extension.getURL(paths.placeholdersHtml), function (importedPlaceholders) {
+			if(data.funMode){
+				__replaceWithFunnyPlaceholders(unusedWeekdays, importedPlaceholders);
+			} else {
+				__replaceWithRegularPlaceholders(unusedWeekdays, importedPlaceholders);
+			}
+		});
+	});
+}
+
+
 $.get(chrome.extension.getURL(paths.shedulePageHtml), function(importedHtml) {
 	var scheduleData = ScheduleParser.produceSchedule();
-	var incomingMessageCount = __extractIncomingMessagesCount();
+	var incomingMessagesCount = __extractIncomingMessagesCount();
 
 	overwriteCurrentLayout(importedHtml);
-	var activitiesByWeekdays = __groupActivitiesByWeekDays(scheduleData);
-	displaySchedule(activitiesByWeekdays);
-	displayIncomingMessages(incomingMessageCount);
+	var activitiesGroupedByWeekdays = __groupActivitiesByWeekDays(scheduleData);
+	displaySchedule(activitiesGroupedByWeekdays);
+	displayIncomingMessages(incomingMessagesCount);
+
+	addPlaceholders(__findOutUnusedWeekdays(activitiesGroupedByWeekdays));
 });

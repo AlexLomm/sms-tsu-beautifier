@@ -1,4 +1,4 @@
-
+<div>
 <div id="head">
 	<title>Sms.tsu Beautifier</title>
 	<meta charset="utf-8">
@@ -259,9 +259,9 @@
 			$('div.custom-dropdown-item span[data-value="' + selectedTheme + '"]').addClass('theme-selected');
 		}
 
-		chrome.storage.sync.get('theme', function(data) {
+		chrome.storage.sync.get('theme', function(data){
 			selectedTheme = themes.defaultTheme;
-			if(data && data.theme && __selectedThemeIsCorrect(data.theme)){
+			if(data.theme && __selectedThemeIsCorrect(data.theme)){
 				selectedTheme = data.theme;
 			}
 
@@ -271,13 +271,16 @@
 
 			__highlightSelectedTheme(selectedTheme);
 		});
-	</script>
 
-	<script>
+		chrome.storage.sync.get('funMode', function(data){
+			$('div.fun-mode input').prop('checked', !!data.funMode);
+		});
+
 		$('div.fun-mode').on('click', 'input', function(){
 			chrome.storage.sync.set({
 				'funMode': $(this).prop('checked')
 			});
+			location.reload();
 		});
 
 		// changes the theme dynamically when the button is clicked
@@ -296,5 +299,6 @@
 			}
 		});
 	</script>
+</div>
 </div>
 
