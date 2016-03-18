@@ -1,5 +1,7 @@
 var paths = {
-	shedulePageHtml: 'html/schedule_page.html',
+	extensionAbsolutePath: chrome.extension.getURL('/'),
+	
+	schedulePageHtml: 'html/schedule_page.html',
 	placeholdersHtml: 'html/schedule_page_placeholders.html',
 
 	oldHtmlMessagesAnchor:   'html body form#aspnetForm table tbody tr td span#ctl00_Label2 a',
@@ -8,7 +10,12 @@ var paths = {
 	panelAddressSection:     '.panel-heading span',
 	panelNameSection:        '.panel-body',
 	panelTimeAndTypeSection: '.upper-divider span',
-	panelCollisionSection:   '.panel-default'
+	panelCollisionSection:   '.panel-default',
+
+	funnyPlaceholder: '#placeholder-fun > div',
+	regularPlaceholder: '#placeholder-regular > div',
+
+	funModeToggle: 'div.fun-mode input'
 };
 
 var allWeekdays = ['ორშაბათი', 'სამშაბათი', 'ოთხშაბათი', 'ხუთშაბათი', 'პარასკევი', 'შაბათი'];
@@ -28,6 +35,10 @@ var memes = {
 	]
 };
 
+var themes = {
+	availableThemes: ['flatly', 'sandstone', 'slate', 'united'],
+	defaultTheme: 'flatly'
+};
 
 function __extractIncomingMessagesCount(){
     var messagesLinkTag = $(paths.oldHtmlMessagesAnchor);
@@ -144,52 +155,58 @@ function displaySchedule(activitiesByWeekdays){
 }
 
 
-function __chooseRandomFunnyPlaceholder(usedIndexes, unusedDaysCount){
-	var memesCount = memes.memePlaceholders.length;
-	var chooseUniqueIndexes = true;
+function __indexWasPreviouslyChosen(randomIndex, chosenIndexes){
+	return $.inArray(randomIndex, chosenIndexes) !== -1;
+}
 
-	if(memesCount < unusedDaysCount){ chooseUniqueIndexes = false }
+function __selectNewRandomImgIndex(chosenIndexes, uniqueness){
+	var availableMemesCount = memes.memePlaceholders.length;
+	var randomIndex = Math.floor(Math.random() * availableMemesCount);
 
-	var randomIndex = Math.floor(Math.random() * memesCount);
-	if(chooseUniqueIndexes) {
-		while($.inArray(randomIndex, usedIndexes) !== -1){
-			randomIndex = (randomIndex + 1) % memesCount;
-		}
-		usedIndexes.push(randomIndex);
+	if(!uniqueness) return randomIndex;
+
+	// re-choose random index if it was previously chosen
+	while(__indexWasPreviouslyChosen(randomIndex, chosenIndexes)){
+		randomIndex = (randomIndex + 1) % availableMemesCount;
 	}
-	return memes.memePlaceholders[randomIndex];
+
+	return randomIndex;
 }
 
-function __randomizeFunnyPlaceholder(lastActivity, funnyPlaceholder, memeUrl){
-	$(funnyPlaceholder).find('img').attr('src', memeUrl);
-	$(lastActivity).replaceWith(funnyPlaceholder);
+function __selectRandomImgIndexes(unusedWeekdaysCount){
+	var uniqueness = memes.memePlaceholders.length >= unusedWeekdaysCount;
+
+	var chosenIndexes = [];
+	for (var i = 0; i < unusedWeekdaysCount; i++) {
+		chosenIndexes.push(__selectNewRandomImgIndex(chosenIndexes, uniqueness));
+	}
+
+	return chosenIndexes;
 }
 
-function __replaceWithFunnyPlaceholders(unusedWeekDays, importedPlaceholders){
-	var funnyPlaceholder = __extractElementFromImportedHtml('#placeholder-fun > div', importedPlaceholders);
-	var usedIndexes = [];
+function __replaceWithRandomFunPlaceholders(unusedWeekDays, importedPlaceholders){
+	var funnyPlaceholder = __extractElementFromImportedHtml(paths.funnyPlaceholder, importedPlaceholders);
+	var randomIndexes = __selectRandomImgIndexes(unusedWeekDays.length);
+	console.log(randomIndexes);
 
 	for (var i = 0; i < unusedWeekDays.length; i++) {
-		var lastActivity = __extractLastActivityFromH4(unusedWeekDays[i]);
-		__randomizeFunnyPlaceholder(lastActivity, funnyPlaceholder,  __chooseRandomFunnyPlaceholder(usedIndexes, unusedWeekDays.length));
+		var emptyActivityCell = __extractLastActivityFromH4(unusedWeekDays[i]);
+
+		$(funnyPlaceholder).find('img').attr('src', paths.extensionAbsolutePath + memes.memePlaceholders[randomIndexes[i]]);
+		$(emptyActivityCell).replaceWith($(funnyPlaceholder).clone());
 	}
 }
 
 function __replaceWithRegularPlaceholders(unusedWeekDays, importedPlaceholders){
-	var regularPlaceholder = __extractElementFromImportedHtml('#placeholder-regular > div', importedPlaceholders);
+	var regularPlaceholder = __extractElementFromImportedHtml(paths.regularPlaceholder, importedPlaceholders);
+
+	var currentSrc = $(regularPlaceholder).find('img').attr('src');
+	$(regularPlaceholder).find('img').attr('src', paths.extensionAbsolutePath + currentSrc);
 
 	for (var i = 0; i < unusedWeekDays.length; i++) {
 		var lastActivity = __extractLastActivityFromH4(unusedWeekDays[i]);
-		lastActivity.replaceWith(regularPlaceholder);
+		lastActivity.replaceWith($(regularPlaceholder).clone());
 	}
-}
-
-function __findOutUnusedWeekdays(activitiesGroupedByWeekdays){
-	var usedWeekdays = Object.keys(activitiesGroupedByWeekdays);
-
-	// unused week days will be those days which are not used
-	// in activitiesGroupedByWeekdays as keys (Smartass logic ;))
-	return $(allWeekdays).not(usedWeekdays).get();
 }
 
 function addPlaceholders(unusedWeekdays){
@@ -198,7 +215,7 @@ function addPlaceholders(unusedWeekdays){
 
 		$.get(chrome.extension.getURL(paths.placeholdersHtml), function (importedPlaceholders) {
 			if(data.funMode){
-				__replaceWithFunnyPlaceholders(unusedWeekdays, importedPlaceholders);
+				__replaceWithRandomFunPlaceholders(unusedWeekdays, importedPlaceholders);
 			} else {
 				__replaceWithRegularPlaceholders(unusedWeekdays, importedPlaceholders);
 			}
@@ -207,7 +224,92 @@ function addPlaceholders(unusedWeekdays){
 }
 
 
-$.get(chrome.extension.getURL(paths.shedulePageHtml), function(importedHtml) {
+function __saveOption(optionName, optionValue){
+	var option = {};
+	option[optionName] = optionValue;
+
+	chrome.storage.sync.set(option);
+}
+
+function __getSavedOption(optionName, handlerFunction){
+	chrome.storage.sync.get(optionName, handlerFunction);
+}
+
+function __selectedThemeIsCorrect(selectedTheme){
+	for (var i = 0; i < themes.availableThemes.length; i++) {
+		if(themes.availableThemes[i] === selectedTheme) {
+			return true;
+		}
+	}
+	__saveOption('theme', themes.defaultTheme);
+	return false;
+}
+
+function __highlightSelectedTheme(selectedTheme){
+	// clear highlightion of previously selected themes
+	$('div.theme-selectors > div span.theme-selected').removeClass('theme-selected');
+
+	$('div.custom-dropdown-item span[data-value="' + selectedTheme + '"]').addClass('theme-selected');
+}
+
+function __changeStylesheets(themeName){
+	// TODO: remove
+	$($('link')[1]).attr('href', paths.extensionAbsolutePath + 'css/style.css');
+
+	$('link[data-theme="main"]').attr('href', paths.extensionAbsolutePath + 'css/bootstrap/css/' + themeName + '.min.css');
+	$('link[data-theme="secondary"]').attr('href', paths.extensionAbsolutePath + 'css/themes/' + themeName + '.css');
+}
+
+function __activateUserChosenTheme(data){
+	// select the saved theme, if it does not exist, keep the default one
+	var selectedTheme = themes.defaultTheme;
+	if(data.theme && __selectedThemeIsCorrect(data.theme)){
+		selectedTheme = data.theme;
+	}
+
+	__changeStylesheets(selectedTheme);
+	__highlightSelectedTheme(selectedTheme);
+}
+
+function __activateUserChosenMode(data){
+	$(paths.funModeToggle).prop('checked', !!data.funMode);
+}
+
+function __dynamicallyActivateUserChosenTheme(){
+	// changes the theme dynamically when the button is clicked
+	$('div.theme-selectors > div').on('click', 'span', function(){
+		var selectedTheme = $(this).data('value');
+		__changeStylesheets(selectedTheme);
+		__highlightSelectedTheme(selectedTheme);
+		__saveOption('theme', selectedTheme);
+	});
+}
+
+function __dynamicallyActivateUserChosenMode(){
+	$('div.fun-mode').on('click', 'input', function(){
+		__saveOption('funMode', $(this).prop('checked'));
+		location.reload();
+	});
+}
+
+function __findUnusedWeekdays(activitiesGroupedByWeekdays){
+	var usedWeekdays = Object.keys(activitiesGroupedByWeekdays);
+
+	// unused week days will be those days which are not used
+	// in activitiesGroupedByWeekdays as keys (Smartass logic ;))
+	return $(allWeekdays).not(usedWeekdays).get();
+}
+
+function addEventListeners(){
+	__getSavedOption('theme', __activateUserChosenTheme);
+	__getSavedOption('funMode', __activateUserChosenMode);
+
+	__dynamicallyActivateUserChosenTheme();
+	__dynamicallyActivateUserChosenMode();
+}
+
+
+$.get(chrome.extension.getURL(paths.schedulePageHtml), function(importedHtml) {
 	var scheduleData = ScheduleParser.produceSchedule();
 	var incomingMessagesCount = __extractIncomingMessagesCount();
 
@@ -216,5 +318,6 @@ $.get(chrome.extension.getURL(paths.shedulePageHtml), function(importedHtml) {
 	displaySchedule(activitiesGroupedByWeekdays);
 	displayIncomingMessages(incomingMessagesCount);
 
-	addPlaceholders(__findOutUnusedWeekdays(activitiesGroupedByWeekdays));
+	addPlaceholders(__findUnusedWeekdays(activitiesGroupedByWeekdays));
+	addEventListeners();
 });
