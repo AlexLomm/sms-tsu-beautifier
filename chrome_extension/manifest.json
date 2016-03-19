@@ -2,7 +2,9 @@
   "manifest_version": 2,
 
   "name": "SMS Tsu Beautifier",
-  "description": "This extension changes SMS Tsu layout into the more user-friendly one",
+  "description": "ალამაზებს sms.tsu.ge-ს ცხრილს",
+
+  "author": "Alex Lomia",
   "version": "1.0",
 
   "permissions": [
@@ -10,6 +12,11 @@
     "storage"
   ],
   "content_scripts": [
+    {
+      "matches": ["http://sms.tsu.ge/sms/Students/Cxrilebi.aspx"],
+      "css": ["css/fixFlicker.css"],
+      "run_at": "document_start"
+    },
     {
       "matches": ["http://sms.tsu.ge/sms/Students/Cxrilebi.aspx"],
       "js": ["js/jquery-2.2.1.min.js", "js/3.3.6_bootstrap.min.js", "js/scheduleParser.js", "js/schedulePage.js"],

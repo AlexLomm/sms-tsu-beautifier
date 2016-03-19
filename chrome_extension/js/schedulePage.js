@@ -199,10 +199,12 @@ function activateChosenTheme(){
 function respondToThemeChoice(){
 	// changes the theme dynamically when the button is clicked
 	$('div.theme-selectors > div').on('click', 'span', function(){
+		$('body').css('display', 'none'); // to prevent flickering when changing themes
 		var selectedTheme = $(this).data('value');
 		__changeStylesheets(selectedTheme);
 		__highlightSelectedTheme(selectedTheme);
 		saveOption('theme', selectedTheme);
+		$('body').css('display', 'initial'); // to prevent flickering when changing themes
 	});
 }
 

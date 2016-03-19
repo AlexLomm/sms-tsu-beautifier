@@ -1,3 +1,10 @@
+/* this rule is needed to reset display:none caused by
+ fixFlicker.css that is preloaded to hide the old sms.tsu.ge layout
+  while it's being parsed and changed */
+body{
+	display:initial;
+}
+
 .nopad-mid{
   padding: 10px 6px;
 }
