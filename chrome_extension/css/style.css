@@ -30,10 +30,6 @@
 	visibility:hidden;
 }
 
-.hide{
-	display:none;
-}
-
 ul.nav li.dropdown:hover > ul.dropdown-menu {
     display: block;
 }
@@ -208,10 +204,6 @@ h4{
 /* removes the space that was left after navbar-header removal */
 .nav.navbar-nav > li:first-child{
 	margin-left:-15px;
-}
-
-.placeholder{
-	display:none;
 }
 
 

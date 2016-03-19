@@ -40,6 +40,47 @@ var themes = {
 	defaultTheme: 'flatly'
 };
 
+
+
+// GENERIC HELPERS
+function extractElementFromImportedHtml(elementSelector, importedHtml){
+	return $(elementSelector, $(importedHtml));
+}
+
+function extractLastActivityFromH4(weekday){
+	return $('h4:contains(' + weekday + ')').parent().siblings(":last").children("div");
+}
+
+function saveOption(optionName, optionValue){
+	var option = {};
+	option[optionName] = optionValue;
+
+	chrome.storage.sync.set(option);
+}
+
+function getSavedOption(optionName, callback){
+	chrome.storage.sync.get(optionName, callback);
+}
+
+
+// LAYOUT OVERWRITING
+function __extractHead(importedHtml){
+	return extractElementFromImportedHtml('#head', importedHtml)[0].innerHTML;
+}
+
+function __extractBody(importedHtml){
+	return extractElementFromImportedHtml('#body', importedHtml)[0].innerHTML;
+}
+
+function overwriteCurrentLayout(importedHtml){
+	//  innerHTMLs are used to ignore div#head and div#body tags, which
+	// wrap the imported head and body
+	$('head').empty().append(__extractHead(importedHtml));
+	$('body').empty().removeAttr('style').append(__extractBody(importedHtml));
+}
+
+
+// MESSAGES (e.g: წერილები (2))
 function __extractIncomingMessagesCount(){
     var messagesLinkTag = $(paths.oldHtmlMessagesAnchor);
 
@@ -53,12 +94,12 @@ function __extractIncomingMessagesCount(){
 
 function displayIncomingMessages(incomingMessageCount){
 	if(incomingMessageCount){
-		var newMessagesAnchor = $(paths.newMessagesAnchor);
-		newMessagesAnchor.append($('<span class="badge">' + incomingMessageCount + '</span>'));
+		$(paths.newHtmlMessagesAnchor).append($('<span class="badge">' + incomingMessageCount + '</span>'));
 	}
 }
 
 
+// POPULATING NEW LAYOUT
 function __populateAddressSection(activityDiv, activity){
 	var panelAddressSection  = activityDiv.find(paths.panelAddressSection);
 
@@ -95,7 +136,7 @@ function __populateActivityDiv(activityDiv, activity){
 	}
 }
 
-function populateWeekdayColumn(activityDiv, weekdayActivities){
+function __populateWeekdayColumn(activityDiv, weekdayActivities){
 	//   after a div is populated, creates it's clone
 	// and inserts it before the original div
 	__populateActivityDiv(activityDiv, weekdayActivities[0]);
@@ -106,54 +147,74 @@ function populateWeekdayColumn(activityDiv, weekdayActivities){
 	}
 }
 
-
-function __extractElementFromImportedHtml(elementSelector, importedHtml){
-	return $(elementSelector, $(importedHtml));
-}
-
-function __extractHead(importedHtml){
-	return __extractElementFromImportedHtml('#head', importedHtml)[0].innerHTML;
-}
-
-function __extractBody(importedHtml){
-	return __extractElementFromImportedHtml('#body', importedHtml)[0].innerHTML;
-}
-
-function overwriteCurrentLayout(importedHtml){
-	//  innerHTMLs are used to ignore div#head and div#body tags, which
-	// wrap the imported head and body
-	$('head').empty().append(__extractHead(importedHtml));
-	$('body').empty().removeAttr('style').append(__extractBody(importedHtml));
-}
-
-
-function __groupActivitiesByWeekDays(scheduleData){
-	//   The function extracts weekDays one by one from all the activities present in scheduleData,
-	// pushing the activity into it's corresponding weekday array in groupedByWeekdays
-	var activitiesByWeekdays = {};
-	for(var i = 0; i < scheduleData.length; i++){
-		var key = scheduleData[i].time.weekDay;
-		if(!activitiesByWeekdays[key]){
-			activitiesByWeekdays[key] = [];
-		}
-		activitiesByWeekdays[key].push(scheduleData[i]);
-	}
-	return activitiesByWeekdays;
-}
-
-function __extractLastActivityFromH4(weekday){
-	return $('h4:contains(' + weekday + ')').parent().siblings(":last");
-}
-
 function displaySchedule(activitiesByWeekdays){
 	var weekdays = Object.keys(activitiesByWeekdays);
 
 	for(var i = 0; i < weekdays.length; i++){
-		var activityDiv = __extractLastActivityFromH4(weekdays[i]);
-		populateWeekdayColumn(activityDiv, activitiesByWeekdays[weekdays[i]]);
+		var activityDiv = extractLastActivityFromH4(weekdays[i]);
+		__populateWeekdayColumn(activityDiv, activitiesByWeekdays[weekdays[i]]);
 	}
 }
 
+
+// THEMES
+function __selectedThemeIsCorrect(selectedTheme){
+	for (var i = 0; i < themes.availableThemes.length; i++) {
+		if(themes.availableThemes[i] === selectedTheme) {
+			return true;
+		}
+	}
+	saveOption('theme', themes.defaultTheme);
+	return false;
+}
+
+function __highlightSelectedTheme(selectedTheme){
+	// clear highlightion of previously selected themes
+	$('div.theme-selectors > div span.theme-selected').removeClass('theme-selected');
+
+	$('div.custom-dropdown-item span[data-value="' + selectedTheme + '"]').addClass('theme-selected');
+}
+
+function __changeStylesheets(themeName){
+	// TODO: remove
+	$($('link')[1]).attr('href', paths.extensionAbsolutePath + 'css/style.css');
+
+	$('link[data-theme="main"]').attr('href', paths.extensionAbsolutePath + 'css/bootstrap/css/' + themeName + '.min.css');
+	$('link[data-theme="secondary"]').attr('href', paths.extensionAbsolutePath + 'css/themes/' + themeName + '.css');
+}
+
+function activateChosenTheme(){
+	getSavedOption('theme', function(data){
+		// select the saved theme, if it does not exist, keep the default one
+		var selectedTheme = themes.defaultTheme;
+		if(data.theme && __selectedThemeIsCorrect(data.theme)){
+			selectedTheme = data.theme;
+		}
+
+		__changeStylesheets(selectedTheme);
+		__highlightSelectedTheme(selectedTheme);
+	});
+}
+
+function respondToThemeChoice(){
+	// changes the theme dynamically when the button is clicked
+	$('div.theme-selectors > div').on('click', 'span', function(){
+		var selectedTheme = $(this).data('value');
+		__changeStylesheets(selectedTheme);
+		__highlightSelectedTheme(selectedTheme);
+		saveOption('theme', selectedTheme);
+	});
+}
+
+
+// MODES
+function __findUnusedWeekdays(activitiesGroupedByWeekdays){
+	var usedWeekdays = Object.keys(activitiesGroupedByWeekdays);
+
+	// unused week days will be those days which are not used
+	// in activitiesGroupedByWeekdays as keys (Smartass logic ;))
+	return $(allWeekdays).not(usedWeekdays).get();
+}
 
 function __indexWasPreviouslyChosen(randomIndex, chosenIndexes){
 	return $.inArray(randomIndex, chosenIndexes) !== -1;
@@ -184,13 +245,12 @@ function __selectRandomImgIndexes(unusedWeekdaysCount){
 	return chosenIndexes;
 }
 
-function __replaceWithRandomFunPlaceholders(unusedWeekDays, importedPlaceholders){
-	var funnyPlaceholder = __extractElementFromImportedHtml(paths.funnyPlaceholder, importedPlaceholders);
+function __replaceWithRandomFunnyPlaceholders(unusedWeekDays, importedPlaceholders){
+	var funnyPlaceholder = extractElementFromImportedHtml(paths.funnyPlaceholder, importedPlaceholders);
 	var randomIndexes = __selectRandomImgIndexes(unusedWeekDays.length);
-	console.log(randomIndexes);
 
 	for (var i = 0; i < unusedWeekDays.length; i++) {
-		var emptyActivityCell = __extractLastActivityFromH4(unusedWeekDays[i]);
+		var emptyActivityCell = extractLastActivityFromH4(unusedWeekDays[i]);
 
 		$(funnyPlaceholder).find('img').attr('src', paths.extensionAbsolutePath + memes.memePlaceholders[randomIndexes[i]]);
 		$(emptyActivityCell).replaceWith($(funnyPlaceholder).clone());
@@ -198,116 +258,103 @@ function __replaceWithRandomFunPlaceholders(unusedWeekDays, importedPlaceholders
 }
 
 function __replaceWithRegularPlaceholders(unusedWeekDays, importedPlaceholders){
-	var regularPlaceholder = __extractElementFromImportedHtml(paths.regularPlaceholder, importedPlaceholders);
+	var regularPlaceholder = extractElementFromImportedHtml(paths.regularPlaceholder, importedPlaceholders);
 
 	var currentSrc = $(regularPlaceholder).find('img').attr('src');
 	$(regularPlaceholder).find('img').attr('src', paths.extensionAbsolutePath + currentSrc);
 
 	for (var i = 0; i < unusedWeekDays.length; i++) {
-		var lastActivity = __extractLastActivityFromH4(unusedWeekDays[i]);
+		var lastActivity = extractLastActivityFromH4(unusedWeekDays[i]);
 		lastActivity.replaceWith($(regularPlaceholder).clone());
 	}
 }
 
-function addPlaceholders(unusedWeekdays){
-	chrome.storage.sync.get('funMode', function(data) {
-		data.funMode = !!data.funMode;
+function __applyMode(funModeStatus, unusedWeekDays, importedPlaceholders){
+	// apply regular or fun mode depending on what user chose in previous session
+	if(funModeStatus){
+		__markCollisionWithTrollface();
+		__replaceWithRandomFunnyPlaceholders(unusedWeekDays, importedPlaceholders);
+	} else {
+		__undoMarkCollisionTrollface();
+		__replaceWithRegularPlaceholders(unusedWeekDays, importedPlaceholders);
+	}
+}
+
+function __toggleFunModeButton(data){
+	$(paths.funModeToggle).prop('checked', !!data.funMode);
+}
+
+function __markCollisionWithTrollface(){
+	// choose divs that have .collision class and are not located immediately
+	// after <h4>weekday</h4>s
+	var trollingCandidates = $('div:not(:first-child) > div.collision');
+	var randomIndex = Math.floor(Math.random() * trollingCandidates.length);
+	var chosenCollisionDiv = $(trollingCandidates[randomIndex]);
+
+	// create trollface img element
+	var trollFaceImg = $('<img id="troll" src="img/peekingTrollface.png" alt="They see me trollin, they hatin">');
+	trollFaceImg.attr('src', paths.extensionAbsolutePath + trollFaceImg.attr('src'));
+
+	// calculate position of trollface img, for example margin-left:-17px, or 43px, etc
+	var randomOffset = Math.floor(Math.random() * 80);
+	trollFaceImg.css('margin-left', randomOffset.toString() + 'px');
+
+	// add the trollface img before chosenCollisionDiv
+	chosenCollisionDiv.before(trollFaceImg);
+
+	// add margin-top -20px to compensate for trollface img height
+	chosenCollisionDiv.parent().css('margin-top', '-20px');
+}
+
+function __undoMarkCollisionTrollface(){
+	// find the trollface img
+	var trollImg = $("#troll");
+
+	// remove margin from it's parrent
+	trollImg.parent().css('margin-top', "");
+
+	// remove the trollface img itself
+	trollImg.remove();
+}
+
+function activateChosenMode(unusedWeekDays){
+	getSavedOption('funMode', function(data) {
+		var funModeStatus = !!data.funMode;
 
 		$.get(chrome.extension.getURL(paths.placeholdersHtml), function (importedPlaceholders) {
-			if(data.funMode){
-				__replaceWithRandomFunPlaceholders(unusedWeekdays, importedPlaceholders);
-			} else {
-				__replaceWithRegularPlaceholders(unusedWeekdays, importedPlaceholders);
-			}
+			__applyMode(funModeStatus, unusedWeekDays, importedPlaceholders);
+			//  toggle mode selector button
+			getSavedOption('funMode', __toggleFunModeButton);
+		});
+	});
+}
+
+function respondToModeChoice(unusedWeekDays){
+	$('div.fun-mode').on('click', 'input', function(){
+		var funModeStatus = $(this).prop('checked');
+
+		$.get(chrome.extension.getURL(paths.placeholdersHtml), function (importedPlaceholders) {
+			__applyMode(funModeStatus, unusedWeekDays, importedPlaceholders);
+			saveOption('funMode', funModeStatus);
 		});
 	});
 }
 
 
-function __saveOption(optionName, optionValue){
-	var option = {};
-	option[optionName] = optionValue;
-
-	chrome.storage.sync.set(option);
-}
-
-function __getSavedOption(optionName, handlerFunction){
-	chrome.storage.sync.get(optionName, handlerFunction);
-}
-
-function __selectedThemeIsCorrect(selectedTheme){
-	for (var i = 0; i < themes.availableThemes.length; i++) {
-		if(themes.availableThemes[i] === selectedTheme) {
-			return true;
+// MAIN
+function __groupActivitiesByWeekDays(scheduleData){
+	//   The function extracts weekDays one by one from all the activities present in scheduleData,
+	// pushing the activity into it's corresponding weekday array in groupedByWeekdays
+	var activitiesByWeekdays = {};
+	for(var i = 0; i < scheduleData.length; i++){
+		var key = scheduleData[i].time.weekDay;
+		if(!activitiesByWeekdays[key]){
+			activitiesByWeekdays[key] = [];
 		}
+		activitiesByWeekdays[key].push(scheduleData[i]);
 	}
-	__saveOption('theme', themes.defaultTheme);
-	return false;
+	return activitiesByWeekdays;
 }
-
-function __highlightSelectedTheme(selectedTheme){
-	// clear highlightion of previously selected themes
-	$('div.theme-selectors > div span.theme-selected').removeClass('theme-selected');
-
-	$('div.custom-dropdown-item span[data-value="' + selectedTheme + '"]').addClass('theme-selected');
-}
-
-function __changeStylesheets(themeName){
-	// TODO: remove
-	$($('link')[1]).attr('href', paths.extensionAbsolutePath + 'css/style.css');
-
-	$('link[data-theme="main"]').attr('href', paths.extensionAbsolutePath + 'css/bootstrap/css/' + themeName + '.min.css');
-	$('link[data-theme="secondary"]').attr('href', paths.extensionAbsolutePath + 'css/themes/' + themeName + '.css');
-}
-
-function __activateUserChosenTheme(data){
-	// select the saved theme, if it does not exist, keep the default one
-	var selectedTheme = themes.defaultTheme;
-	if(data.theme && __selectedThemeIsCorrect(data.theme)){
-		selectedTheme = data.theme;
-	}
-
-	__changeStylesheets(selectedTheme);
-	__highlightSelectedTheme(selectedTheme);
-}
-
-function __activateUserChosenMode(data){
-	$(paths.funModeToggle).prop('checked', !!data.funMode);
-}
-
-function __dynamicallyActivateUserChosenTheme(){
-	// changes the theme dynamically when the button is clicked
-	$('div.theme-selectors > div').on('click', 'span', function(){
-		var selectedTheme = $(this).data('value');
-		__changeStylesheets(selectedTheme);
-		__highlightSelectedTheme(selectedTheme);
-		__saveOption('theme', selectedTheme);
-	});
-}
-
-function __dynamicallyActivateUserChosenMode(){
-	$('div.fun-mode').on('click', 'input', function(){
-		__saveOption('funMode', $(this).prop('checked'));
-		location.reload();
-	});
-}
-
-function __findUnusedWeekdays(activitiesGroupedByWeekdays){
-	var usedWeekdays = Object.keys(activitiesGroupedByWeekdays);
-
-	// unused week days will be those days which are not used
-	// in activitiesGroupedByWeekdays as keys (Smartass logic ;))
-	return $(allWeekdays).not(usedWeekdays).get();
-}
-
-function addEventListeners(){
-	__getSavedOption('theme', __activateUserChosenTheme);
-	__getSavedOption('funMode', __activateUserChosenMode);
-
-	__dynamicallyActivateUserChosenTheme();
-	__dynamicallyActivateUserChosenMode();
-}
-
 
 $.get(chrome.extension.getURL(paths.schedulePageHtml), function(importedHtml) {
 	var scheduleData = ScheduleParser.produceSchedule();
@@ -318,6 +365,10 @@ $.get(chrome.extension.getURL(paths.schedulePageHtml), function(importedHtml) {
 	displaySchedule(activitiesGroupedByWeekdays);
 	displayIncomingMessages(incomingMessagesCount);
 
-	addPlaceholders(__findUnusedWeekdays(activitiesGroupedByWeekdays));
-	addEventListeners();
+	activateChosenTheme();
+	activateChosenMode(__findUnusedWeekdays(activitiesGroupedByWeekdays));
+
+	// event handlers
+	respondToThemeChoice();
+	respondToModeChoice(__findUnusedWeekdays(activitiesGroupedByWeekdays));
 });

@@ -94,7 +94,7 @@ var ScheduleParser = {
     __guessType: function(cellColumnNumber){
         switch(cellColumnNumber){
             case 1: return 'ლექცია';
-            case 2: return 'სამ. ჯგუფი';
+            case 2: return 'ს. ჯგუფი';
             case 3: return 'პრაქ.';
             case 4: return 'ლაბ.';
         }
