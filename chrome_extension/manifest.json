@@ -7,6 +7,10 @@
   "author": "Alex Lomia",
   "version": "1.0",
 
+  "icons": {
+    "48": "icons/feelsGoodGuy48.png",
+    "128": "icons/feelsGoodGuy128.png"
+  },
   "permissions": [
     "activeTab",
     "storage"
