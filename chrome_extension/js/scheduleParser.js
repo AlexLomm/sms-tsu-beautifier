@@ -55,7 +55,7 @@ var ScheduleParser = {
     },
 
     __cellHasCollision: function(cell){
-        return $(cell[0]).parent().closest('td').attr('style') === 'background-color:Red;';
+        return $(cell[0]).parent().closest('td[title]').attr('style') === 'background-color:Red;';
     },
 
     // makes an object from the cell

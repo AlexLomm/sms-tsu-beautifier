@@ -121,19 +121,21 @@ function __populateTimeAndTypeSection(activityDiv, activity){
 	panelTimeAndTypeSection[1].innerHTML = activity.type;
 }
 
-function __markCollision(activityDiv){
-	activityDiv.find(paths.panelCollisionSection).addClass('collision');
+function __markCollisionIfNeeded(activityDiv, activity){
+	if(activity.collides){
+		activityDiv.find(paths.panelCollisionSection).addClass('collision');
+	} else {
+		// class removal is needed, because if previous div was marked, this activity
+		// div will also be marked, as it is an EXACT COPY OF THE PREVIOUS DIV
+		activityDiv.find(paths.panelCollisionSection).removeClass('collision')
+	}
 }
 
 function __populateActivityDiv(activityDiv, activity){
 	__populateAddressSection(activityDiv, activity);
 	__populateNameSection(activityDiv, activity);
 	__populateTimeAndTypeSection(activityDiv, activity);
-
-	// mark activity with red color if it has collisions
-	if(activity.collides){
-		__markCollision(activityDiv);
-	}
+	__markCollisionIfNeeded(activityDiv, activity);
 }
 
 function __populateWeekdayColumn(activityDiv, weekdayActivities){
@@ -152,6 +154,7 @@ function displaySchedule(activitiesByWeekdays){
 
 	for(var i = 0; i < weekdays.length; i++){
 		var activityDiv = extractLastActivityFromH4(weekdays[i]);
+		//console.log(activityDiv.clone())
 		__populateWeekdayColumn(activityDiv, activitiesByWeekdays[weekdays[i]]);
 	}
 }
