@@ -1,235 +1,237 @@
 <div>
-<div id="head">
-	<title>Sms.tsu Beautifier</title>
-	<meta charset="utf-8">
-	<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
-	<link rel="stylesheet" href="css/bootstrap/css/united.min.css" data-theme="main">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/united.css" data-theme="secondary">
-</div>
+  <div id="head">
+    <title>Sms.tsu Beautifier</title>
+    <meta charset="utf-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <link rel="stylesheet" href="css/bootstrap/css/united.min.css" data-theme="main">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/united.css" data-theme="secondary">
+  </div>
 
+  <div id="body">
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <!-- left side of the navbar -->
+        <!--<div class="navbar-header">-->
+        <!--<a class="navbar-brand" href="#">Sms.tsu</a>-->
+        <!--</div>-->
+        <ul class="nav navbar-nav">
+          <li><a href="StudAnk.aspx">ანკეტა</a></li>
+          <li class="active"><a href="Cxrilebi.aspx">ცხრილი</a></li>
+          <li><a href="http://sms.tsu.ge/sms/Students/Corespondencia/FakultMimowera.aspx">წერილები </a></li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">სხვა
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="StudIndCxrili.aspx">ინდივიდუალური ცხრილი</a></li>
+              <li><a href="StudBarati.aspx">სასწავლო ბარათი</a></li>
+              <li><a href="StudSascProg.aspx">სასწავლო პროგრამა</a></li>
+              <li><a href="StudSpec.aspx">სპეციალობათა არჩევა</a></li>
+              <li><a href="Corespondencia/FakultMimowera.aspx">კორესპონდენცია</a></li>
+            </ul>
+          </li>
+        </ul>
 
+        <!-- right side of the navbar -->
+        <ul class="nav navbar-nav navbar-right">
 
-<div id="body">
-	<nav class="navbar navbar-default">
-		<div class="container">
-			<!-- left side of the navbar -->
-			<!--<div class="navbar-header">-->
-			<!--<a class="navbar-brand" href="#">Sms.tsu</a>-->
-			<!--</div>-->
-			<ul class="nav navbar-nav">
-				<li><a href="StudAnk.aspx">ანკეტა</a></li>
-				<li class="active"><a href="Cxrilebi.aspx">ცხრილი</a></li>
-				<li><a href="http://sms.tsu.ge/sms/Students/Corespondencia/FakultMimowera.aspx">წერილები </a></li>
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">სხვა <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="StudIndCxrili.aspx">ინდივიდუალური ცხრილი</a></li>
-						<li><a href="StudBarati.aspx">სასწავლო ბარათი</a></li>
-						<li><a href="StudSascProg.aspx">სასწავლო პროგრამა</a></li>
-						<li><a href="StudSpec.aspx">სპეციალობათა არჩევა</a></li>
-						<li><a href="Corespondencia/FakultMimowera.aspx">კორესპონდენცია</a></li>
-					</ul>
-				</li>
-			</ul>
+          <li class="dropdown"><a class="dropdown-toggle"
+                                  data-toggle="dropdown"
+                                  href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;პროფილი
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="Orders.aspx">ინდ. ადმინისტ. - სამართლებრივი აქტები</a></li>
+              <li><a href="ProfileEdit/ChangePassword.aspx">პაროლის შეცვლა</a></li>
+              <li><a href="Information/Financial.aspx">გადახდები</a></li>
+              <li class="divider"></li>
+              <li><a id="ctl00_LinkButton1" href="javascript:__doPostBack('ctl00$LinkButton1','')">გამოსვლა</a></li>
+            </ul>
+          </li>
 
-			<!-- right side of the navbar -->
-			<ul class="nav navbar-nav navbar-right">
+          <li class="dropdown"><a class="dropdown-toggle"
+                                  data-toggle="dropdown"
+                                  href="#"><span class="glyphicon glyphicon-cog"></span></a>
+            <ul class="dropdown-menu">
+              <li>
+                <div class="theme-selectors">
+                  <div class="custom-dropdown-item">
+                    <a href="#"><span class="icon-square theme-selector-flatly" data-value="flatly"></span></a>
+                    <a href="#"><span class="icon-square theme-selector-sandstone" data-value="sandstone"></span></a>
+                    <a href="#"><span class="icon-square theme-selector-slate" data-value="slate"></span></a>
+                    <a href="#"><span class="icon-square theme-selector-united" data-value="united"></span></a>
+                  </div>
+                </div>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <div class="custom-dropdown-item fun-mode">
+                  <label class="fun-toggle-label">Troll?</label>
+                  <div class="pull-right">
+                    <input class="tgl tgl-light" id="cb1" type="checkbox">
+                    <label class="tgl-btn" for="cb1"></label>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </li>
 
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;პროფილი <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="Orders.aspx">ინდ. ადმინისტ. - სამართლებრივი აქტები</a></li>
-						<li><a href="ProfileEdit/ChangePassword.aspx">პაროლის შეცვლა</a></li>
-						<li><a href="Information/Financial.aspx">გადახდები</a></li>
-						<li class="divider"></li>
-						<li><a id="ctl00_LinkButton1" href="javascript:__doPostBack('ctl00$LinkButton1','')">გამოსვლა</a></li>
-					</ul>
-				</li>
+        </ul>
+      </div>
+    </nav>
 
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-cog"></span></a>
-					<ul class="dropdown-menu">
-						<li>
-							<div class="theme-selectors">
-								<div class="custom-dropdown-item">
-									<a href="#"><span class="icon-square theme-selector-flatly" data-value="flatly"></span></a>
-									<a href="#"><span class="icon-square theme-selector-sandstone" data-value="sandstone"></span></a>
-									<a href="#"><span class="icon-square theme-selector-slate" data-value="slate"></span></a>
-									<a href="#"><span class="icon-square theme-selector-united" data-value="united"></span></a>
-								</div>
-							</div>
-						</li>
-						<li class="divider"></li>
-						<li>
-							<div class="custom-dropdown-item fun-mode">
-								<label class="fun-toggle-label">Troll?</label>
-								<div class="pull-right">
-									<input class='tgl tgl-light' id='cb1' type='checkbox'>
-									<label class='tgl-btn' for='cb1'></label>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</li>
-
-			</ul>
-		</div>
-	</nav>
-
-
-
-	<div class="container">
-		<div class="row">
-			<!-- COLUMN -->
-			<div class="col-xs-2">
+    <div class="container">
+      <div class="row">
+        <!-- COLUMN -->
+        <div class="col-xs-2">
 				<span class="text-center">
 					<h4>ორშაბათი</h4>
 				</span>
 
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="panel panel-default">
-							<!-- Default panel contents -->
-							<div class="panel-heading nopad">
-								<span class="separator"> </span>
-								<span class="separator"> </span>
-								<span class="separator"> </span>
-							</div>
-							<div class="panel-body nopad-mid truncate"> </div>
-							<div class="nopad upper-divider fix-overflow">
-								<span class="pull-left"> </span>
-								<span class="pull-right"> </span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> <!-- END OF COLUMN -->
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading nopad">
+                  <span class="separator"> </span>
+                  <span class="separator"> </span>
+                  <span class="separator"> </span>
+                </div>
+                <div class="panel-body nopad-mid truncate"></div>
+                <div class="nopad upper-divider fix-overflow">
+                  <span class="pull-left"> </span>
+                  <span class="pull-right"> </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- END OF COLUMN -->
 
-			<!-- COLUMN -->
-			<div class="col-xs-2">
+        <!-- COLUMN -->
+        <div class="col-xs-2">
 				<span class="text-center">
 					<h4>სამშაბათი</h4>
 				</span>
 
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="panel panel-default">
-							<!-- Default panel contents -->
-							<div class="panel-heading nopad">
-								<span class="separator"> </span>
-								<span class="separator"> </span>
-								<span class="separator"> </span>
-							</div>
-							<div class="panel-body nopad-mid truncate"> </div>
-							<div class="nopad upper-divider fix-overflow">
-								<span class="pull-left"> </span>
-								<span class="pull-right"> </span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> <!-- END OF COLUMN -->
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading nopad">
+                  <span class="separator"> </span>
+                  <span class="separator"> </span>
+                  <span class="separator"> </span>
+                </div>
+                <div class="panel-body nopad-mid truncate"></div>
+                <div class="nopad upper-divider fix-overflow">
+                  <span class="pull-left"> </span>
+                  <span class="pull-right"> </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- END OF COLUMN -->
 
-			<!-- COLUMN -->
-			<div class="col-xs-2">
+        <!-- COLUMN -->
+        <div class="col-xs-2">
 				<span class="text-center">
 					<h4>ოთხშაბათი</h4>
 				</span>
 
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="panel panel-default">
-							<!-- Default panel contents -->
-							<div class="panel-heading nopad">
-								<span class="separator"> </span>
-								<span class="separator"> </span>
-								<span class="separator"> </span>
-							</div>
-							<div class="panel-body nopad-mid truncate"> </div>
-							<div class="nopad upper-divider fix-overflow">
-								<span class="pull-left"> </span>
-								<span class="pull-right"> </span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> <!-- END OF COLUMN -->
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading nopad">
+                  <span class="separator"> </span>
+                  <span class="separator"> </span>
+                  <span class="separator"> </span>
+                </div>
+                <div class="panel-body nopad-mid truncate"></div>
+                <div class="nopad upper-divider fix-overflow">
+                  <span class="pull-left"> </span>
+                  <span class="pull-right"> </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- END OF COLUMN -->
 
-			<!-- COLUMN -->
-			<div class="col-xs-2">
+        <!-- COLUMN -->
+        <div class="col-xs-2">
 				<span class="text-center">
 					<h4>ხუთშაბათი</h4>
 				</span>
 
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="panel panel-default">
-							<!-- Default panel contents -->
-							<div class="panel-heading nopad">
-								<span class="separator"> </span>
-								<span class="separator"> </span>
-								<span class="separator"> </span>
-							</div>
-							<div class="panel-body nopad-mid truncate"> </div>
-							<div class="nopad upper-divider fix-overflow">
-								<span class="pull-left"> </span>
-								<span class="pull-right"> </span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> <!-- END OF COLUMN -->
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading nopad">
+                  <span class="separator"> </span>
+                  <span class="separator"> </span>
+                  <span class="separator"> </span>
+                </div>
+                <div class="panel-body nopad-mid truncate"></div>
+                <div class="nopad upper-divider fix-overflow">
+                  <span class="pull-left"> </span>
+                  <span class="pull-right"> </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- END OF COLUMN -->
 
-			<!-- COLUMN -->
-			<div class="col-xs-2">
+        <!-- COLUMN -->
+        <div class="col-xs-2">
 				<span class="text-center">
 					<h4>პარასკევი</h4>
 				</span>
 
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="panel panel-default">
-							<!-- Default panel contents -->
-							<div class="panel-heading nopad">
-								<span class="separator"> </span>
-								<span class="separator"> </span>
-								<span class="separator"> </span>
-							</div>
-							<div class="panel-body nopad-mid truncate"> </div>
-							<div class="nopad upper-divider fix-overflow">
-								<span class="pull-left"> </span>
-								<span class="pull-right"> </span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> <!-- END OF COLUMN -->
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading nopad">
+                  <span class="separator"> </span>
+                  <span class="separator"> </span>
+                  <span class="separator"> </span>
+                </div>
+                <div class="panel-body nopad-mid truncate"></div>
+                <div class="nopad upper-divider fix-overflow">
+                  <span class="pull-left"> </span>
+                  <span class="pull-right"> </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- END OF COLUMN -->
 
-			<!-- COLUMN -->
-			<div class="col-xs-2">
+        <!-- COLUMN -->
+        <div class="col-xs-2">
 				<span class="text-center">
 					<h4>შაბათი</h4>
 				</span>
 
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="panel panel-default">
-							<!-- Default panel contents -->
-							<div class="panel-heading nopad">
-								<span class="separator"> </span>
-								<span class="separator"> </span>
-								<span class="separator"> </span>
-							</div>
-							<div class="panel-body nopad-mid truncate"> </div>
-							<div class="nopad upper-divider fix-overflow">
-								<span class="pull-left"> </span>
-								<span class="pull-right"> </span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> <!-- END OF COLUMN -->
-		</div>
-	</div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading nopad">
+                  <span class="separator"> </span>
+                  <span class="separator"> </span>
+                  <span class="separator"> </span>
+                </div>
+                <div class="panel-body nopad-mid truncate"></div>
+                <div class="nopad upper-divider fix-overflow">
+                  <span class="pull-left"> </span>
+                  <span class="pull-right"> </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- END OF COLUMN -->
+      </div>
+    </div>
 
-</div>
+  </div>
 </div>
 

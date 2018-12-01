@@ -1,4 +1,4 @@
 /* hides body, so it does not flicker when it's being changed */
-body{
-	display:none;
+body {
+	display: none;
 }
